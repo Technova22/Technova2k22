@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">   -->
+</head>
+<body>
+    <div class="row">
+        <section class="section">
+          <header>
+            <h3>Register</h3>
+            <h4>Please fill your information bellow</h4>
+          </header>
+          <main>
+            <form action="" id="TeamForm" >
+      
+                <div class="form-item box-item">
+                  <input id="teamname" type="text" name="name" placeholder="Team Name" data-required/>
+                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+                </div>
+                <div class ="di">
+                <div class="form-item box-item">
+                  <input id ="name1" type="text" name="email" placeholder="1st Member" data-required/>
+                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+                  <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+                </div>
+                <div class="form-item box-item mail">
+                  <input id="email1" type="email" name="email" placeholder="email"  data-email data-required/>
+                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+                </div>
+                </div>
+                <div class="di">
+                <div class="form-item box-item">
+                  <input  id ="name2" type="text" name="email" placeholder="2nd Member"  data-required/>
+                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+                  <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+                </div>
+                <div class="form-item box-item mail">
+                  <input id="email2" type="email" name="email" placeholder="email" data-email data-required/>
+                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+                </div>
+                </div>
+                <div class="di">
+                <div class="form-item box-item">
+                  <input   id ="name3" type="text" name="email" placeholder="3rd Member"  data-required/>
+                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+                  <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+                </div>
+                <div class="form-item box-item mail">
+                  <input id="email3" type="email" name="email" placeholder="email" data-email data-required/>
+                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+                </div>
+                </div>
+                <div class="di">
+                <div class="form-item box-item">
+                  <input  id ="name4"  type="text" name="email" placeholder="4th Member" data-required/>
+                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+                  <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+                </div>
+                <div class="form-item box-item mail">
+                  <input  id ="email4" type="email" name="email" placeholder="email"  data-email data-required/>
+                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+                </div>
+                </div>
+        
+               
+                
+                <div class="form-item my-3">
+                  <button  class="submit" type="submit" onclick="submitForm()" >Submit</button>
+                </div>
+              </form>
+          </main>
+         
+          <i class="wave"></i>
+        </section>
+      </div>
+      <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+      <script src="./firebaseConfig.js"></script>
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+</body>
+</html>
