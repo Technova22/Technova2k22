@@ -22,6 +22,10 @@ const [credentials, setCredentials] = useState({
   rollno:"",
   fullname: "",
   email: "",
+  mobile:"",
+  organization:"",
+  branch:"",
+  semester:"",
   password: "",
   confirmpassword:""
 });
@@ -30,7 +34,7 @@ const [logincred, setlogincred] = useState({
   e_mail:'',
   e_password:''
 });
-const [resetemail, setresetemail] = useState('')
+const [resetemail, setresetemail] = useState('');
 const onChange = (e) => {
 
   setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -42,7 +46,7 @@ const onChange1 = (e) => {
   
 };
 
-const {rollno,fullname,email,password,confirmpassword}=credentials;
+const {rollno,fullname,email,mobile,organization,branch,semester,password,confirmpassword}=credentials;
 const {e_mail,e_password}=logincred;
 
 function validate_confirm(password,confirmpassword){
@@ -115,6 +119,10 @@ function validate_email(email) {
       rollno:rollno,
       email : email,
       fullname : fullname,
+      mobile:mobile,
+      organization:organization,
+      branch:branch,
+      semester:semester,
      password :password,
      emailverified:false,
       last_login : Date.now()
@@ -122,7 +130,10 @@ function validate_email(email) {
 
     sendEmailVerification(user)
     .then(() => {
-       console.log('email verfication send');
+      toaster.push(
+        <Message type="info" closable>
+         Email link set</Message>
+      );
        console.log(user);
     });
      updateProfile(auth.currentUser, {
@@ -146,7 +157,10 @@ function validate_email(email) {
     // Push to Firebase Database
     set(child(database_ref,'users/'+rollno),user_data);
     // DOne
-    alert('User Created!!')
+    toaster.push(
+      <Message type="success" closable>
+       User Registered</Message>
+    );
    
  
     
@@ -227,7 +241,10 @@ const validate_rollno=async(rollno)=>{
         
        
       }catch(err){
-         console.log(err.message);
+        toaster.push(
+          <Message type="error" closable>
+           {err.message}</Message>
+        );
       }
       
   
@@ -255,7 +272,10 @@ const validate_rollno=async(rollno)=>{
     // Add this user to Firebase Database
     // var database_ref = db.ref()
     if(user.emailVerified != true){
-            alert("Email not verified yet");
+      toaster.push(
+        <Message type="error" closable>
+        Email not verified yet</Message>
+      );
     }
     else{
     
@@ -274,7 +294,10 @@ const validate_rollno=async(rollno)=>{
     setCurrentName(user.displayName)
     console.log(currentName)
     history.push("/")
-    alert('User Logged In!!')
+   toaster.push(
+      <Message type="success" closable>
+       User Logged In</Message>
+    );
   }
 
   })
@@ -321,10 +344,10 @@ function resetpassword(){
         <div className="container__form container--signup " >
             <form   className="form" id="form1" style={{overflow: "scroll"}} onSubmit={signupp}>
                 <div style={{position: "relative",top: "18%"}}>
-                    <h2 className="form__title" style={{position: "relative",top: "12%",marginTop:'60%'}}>Sign Up</h2>
+                    <h2 className="form__title" style={{position: "relative",top: "22%",marginTop:'220%'}}>Sign Up</h2>
                 </div>
                
-                <div className="input-box" style={{marginTop: "110px"}}>
+                <div className="input-box" style={{marginTop: "160px"}}>
                     <input type="number"  id="rollno" name="rollno" required  onChange={onChange}/>
                     <label htmlFor="rollno">Roll No.</label>
                   </div>
@@ -335,6 +358,22 @@ function resetpassword(){
                   <div className="input-box">
                     <input type="email" id="email" name="email" required   onChange={onChange}/>
                     <label htmlFor="email">Email</label>
+                  </div>
+                  <div className="input-box">
+                    <input type="number" id="mobile" name="mobile" required   onChange={onChange}/>
+                    <label htmlFor="mobile">Mobile Number</label>
+                  </div>
+                  <div className="input-box">
+                    <input type="text" id="organization" name="organization" required   onChange={onChange}/>
+                    <label htmlFor="organization">Organization Name</label>
+                  </div>
+                  <div className="input-box">
+                    <input type="text" id="branch" name="branch" required   onChange={onChange}/>
+                    <label htmlFor="branch">Branch</label>
+                  </div>
+                  <div className="input-box">
+                    <input type="number" id="semester" name="semester" required   onChange={onChange}/>
+                    <label htmlFor="semester">Semester</label>
                   </div>
                   <div className="input-box">
                     <input type="password" id="password" name="password" required   onChange={onChange}/>

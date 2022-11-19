@@ -352,22 +352,22 @@ margin-bottom: 10px;
   transition: transform calc(var(--d) * 2) var(--e);
 }
 .card:nth-child(1):before {
-  background-image: url("../public/images/8.jpg");
+  background-image: url("../public/images/8-min.jpg");
 }
 .card:nth-child(2):before {
-  background-image: url("../public/images/9.jpg");
+  background-image: url("../public/images/9-min.jpg");
 }
 .card:nth-child(3):before {
-  background-image: url("../public/images/13.jpg");
+  background-image: url("../public/images/13-min.jpg");
 }
 .card:nth-child(4):before {
-  background-image: url("../public/images/10.jpg");
+  background-image: url("../public/images/10-min.jpg");
 }
 .card:nth-child(5):before {
-  background-image: url("../public/images/11.jpg");
+  background-image: url("../public/images/11-min.jpg");
 }
 .card:nth-child(6):before {
-  background-image: url("../public/images/12.jpg");
+  background-image: url("../public/images/12-min.jpg");
 }
 
 .content {
