@@ -2,32 +2,40 @@ import React,{useState} from 'react'
 import { useParams, useRouteMatch } from 'react-router-dom'
 import {auth,db} from './misc/firebase'
 import '../TeamReg.css'
-import {data} from '../Data'
-import {  ref, set , get ,child, update, remove, push, onValue} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
 
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+import {data} from '../Data'
+import {  ref, set , get ,child, update, remove, push, onValue} from "firebase/database";
+
+
 import {useStore} from '../store'
+import { useToaster,Message } from 'rsuite'
 // import {InsertData,onSubmit} from './misc/helper'
 
 const TeamReg = () => {
   const {currentName} = useStore((state) => state.currentName);
   // const {ide} = useParams();
   const {ide} = useParams();
-
-const [teamform, setteamform] = useState({
-  teamname:'',
-  name1:'',
-  email1:'',
+  const toaster = useToaster();
+  const [teamform, setteamform] = useState({
+    teamname:'',
+    name1:'',
+    email1:'',
+    phone1:'',
+  rollnumber1:'',
   name2:'',
   email2:'',
+  phone2:'',
+  rollnumber2:'',
   name3:'',
   email3:'',
+  phone3:'',
+  rollnumber3:'',
   name4:'',
   email4:'',
-
+  phone4:'',
+  rollnumber4:''
+  
 });
-// console.log(teamform)
-
 let name,value;
 const getData = (e)=>{
   name = e.target.name;
@@ -35,6 +43,53 @@ const getData = (e)=>{
   
   setteamform({...teamform,[name]:value}) 
 }
+// console.log(teamform)
+var [me2, setMe2] = useState(false);
+var [me3, setMe3] = useState(false);
+var [me4, setMe4] = useState(false);
+
+let maximumclick = data[ide].member;
+
+const [cnt, setcnt] = useState(1)
+const addmember = (e) => {
+  e.preventDefault();
+
+  console.log(cnt)
+  if(cnt<maximumclick){
+    setcnt(cnt+1);
+    if (me2) {
+        if (me3) {
+            setMe4(true);
+        } else {
+            setMe3(true);
+        }
+    } else {
+        setMe2(true);
+    }
+  }
+  else{
+    toaster.push(
+      <Message type="info" closable>
+      Team of upto {maximumclick} members allowed </Message>
+    );
+  }
+}
+
+const delmember = (e) => {
+    e.preventDefault();
+    console.log(cnt)
+  if(cnt>1){
+    setcnt(cnt-1);
+    if (me4) {
+        setMe4(false);
+    } else if (me3) {
+        setMe3(false);
+    } else if (me2) {
+        setMe2(false);
+    }
+}
+}
+
 
 
 
@@ -56,7 +111,15 @@ async function InsertData(){
       member3: teamform.name3,
       mail_id3: teamform.email3,
       member4: teamform.name4,
-      mail_id4: teamform.email4
+      mail_id4: teamform.email4,
+      mobile1: teamform.phone1,
+      mobile2: teamform.phone2,
+      mobile3: teamform.phone3,
+      mobile4: teamform.phone4,
+      roll_no1: teamform.rollnumber1,
+      roll_no2: teamform.rollnumber2,
+      roll_no3: teamform.rollnumber3,
+      roll_no4: teamform.rollnumber4,
       });
   
       let id_array = [teamform.email1, teamform.email2, teamform.email3, teamform.email4];
@@ -70,10 +133,14 @@ async function InsertData(){
         const dbRef = ref(db, 'events/' + data[ide].eventName + "/allMembers/");
   
           id_array.forEach((element)=>{
+
+            if(element != "")
+            {
              let  newRef = push(dbRef);
               
               set(newRef , element); 
               console.log(newRef.key.value);
+            }
   
           });
   
@@ -103,10 +170,11 @@ async function onSubmit(e){
   
   let arr = new Array(4);
   arr.fill(0);
-  if(currentName.length<=0){
-  alert("Please log in");
-  }
-  else if(teamform.email1== teamform.email2|| teamform.email1== teamform.email3|| teamform.email1== teamform.email4|| teamform.email2== teamform.email3|| teamform.email2== teamform.email4|| teamform.email3== teamform.email4)
+ 
+  // if(currentName.length<=0){
+  // alert("Please log in");
+  // }
+  if(teamform.email1 != "" && (teamform.email1== teamform.email2|| teamform.email1== teamform.email3|| teamform.email1== teamform.email4)|| teamform.email2 != "" && (teamform.email2== teamform.email3|| teamform.email2== teamform.email4) || teamform.email3 != "" && (teamform.email3== teamform.email4))
   {
     console.log('Error : One or more emails entered are same');
     alert('one or more emails Entered are same');
@@ -115,7 +183,7 @@ async function onSubmit(e){
     await get(child(db_ref, teamform.teamname)).then((snapshot) =>{
   
      try{
-  
+      console.log(snapshot);
       if(snapshot.exists()){
         throw new Error('Team already exists');
       }
@@ -139,19 +207,19 @@ async function onSubmit(e){
           // let childKey = childSnapshot.key;
           let childData = childSnapshot.val();
   
-          if(childData  == teamform.teamname) 
+          if(teamform.email1 != "" && childData  == teamform.email1) 
           {
             throw Error(`${teamform.email1} is already registered`);
           }
-          if(childData  == teamform.email2) 
+          if(teamform.email2 != "" && childData  == teamform.email2) 
           {
             throw new Error(`${teamform.email2} is already registered`);
           }
-          if(childData  == teamform.email3) 
+          if(teamform.email3 != "" && childData  == teamform.email3) 
           {
             throw new Error(`${teamform.email3} is already registered`);
           }
-          if(childData  == teamform.email4) 
+          if(teamform.email4 != "" && childData  == teamform.email4) 
           {
             throw new Error(`${teamform.email4} is already registered`);
           }
@@ -180,7 +248,7 @@ async function onSubmit(e){
                 
           // console.log(childSnapshot.val());
          if(childSnapshot.val().emailverified == true){
-          if(teamform.email1 == childSnapshot.val().email )
+          if( teamform.email1 == childSnapshot.val().email )
           {
             console.log('email1 match' + i);
             arr[0] = 1;
@@ -209,6 +277,10 @@ async function onSubmit(e){
         // for(let i = 0; i < arr.length; i++){
         //   console.log(`${arr[i]} `);
         // }
+
+        if(teamform.email2 == "") arr[1] = 1;
+        if(teamform.email3 == "") arr[2] = 1;
+        if(teamform.email4 == "") arr[3] = 1;
 
         if(arr[0] == 0)
         {
@@ -262,75 +334,211 @@ async function onSubmit(e){
   
   } 
   return (
-    <div class="rowteam" >
-        <section class="sectionteam" >
-          <header class="headerteam">
-            <h3>Register</h3>
-            <h4>Please fill your information bellow</h4>
-          </header>
-          <main className='mainteam'>
-            <form action="" id="TeamForm"  >
+    // <div class="rowteam" >
+    //     <section class="sectionteam" >
+    //       <header class="headerteam">
+    //         <h3>Register</h3>
+    //         <h4>Please fill your information bellow</h4>
+    //       </header>
+    //       <main className='mainteam'>
+    //         <form action="" id="TeamForm"  >
       
-                <div class="form-item box-itemteam">
-                  <input id="teamname" type="text" name="teamname" onChange={getData} placeholder="Team Name" data-required/>
-                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-                </div>
-                <div class ="diteam">
-                <div class="form-item box-itemteam">
-                  <input id ="name1" type="text" name="name1" onChange={getData}  placeholder="1st Member" data-required/>
-                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-                  <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
-                </div>
-                <div class="form-item box-itemteam mail">
-                  <input id="email1" type="email" name="email1"  onChange={getData} placeholder="email"  data-email data-required/>
-                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-                </div>
-                </div>
-                <div class="diteam">
-                <div class="form-item box-itemteam">
-                  <input  id ="name2" type="text" name="name2" onChange={getData}  placeholder="2nd Member"  data-required/>
-                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-                  <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
-                </div>
-                <div class="form-item box-itemteam mail">
-                  <input id="email2" type="email" name="email2" onChange={getData}  placeholder="email" data-email data-required/>
-                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-                </div>
-                </div>
-                <div class="diteam">
-                <div class="form-item box-itemteam">
-                  <input   id ="name3" type="text" name="name3"  onChange={getData} placeholder="3rd Member"  data-required/>
-                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-                  <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
-                </div>
-                <div class="form-item box-itemteam mail">
-                  <input id="email3" type="email" name="email3" onChange={getData}  placeholder="email" data-email data-required/>
-                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-                </div>
-                </div>
-                <div class="diteam">
-                <div class="form-item box-itemteam">
-                  <input  id ="name4"  type="text" name="name4" onChange={getData}  placeholder="4th Member" data-required/>
-                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-                  <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
-                </div>
-                <div class="form-item box-itemteam mail">
-                  <input  id ="email4" type="email" name="email4" onChange={getData}  placeholder="email"  data-email data-required/>
-                  <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-                </div>
-                </div>
+    //             <div class="form-item box-itemteam">
+    //               <input id="teamname" type="text" name="teamname" onChange={getData} placeholder="Team Name" onChange={getData} data-required/>
+    //               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+    //             </div>
+    //             <div class ="diteam">
+    //             <div class="form-item box-itemteam">
+    //               <input id ="name1" type="text" name="name1" onChange={getData}  placeholder="1st Member" onChange={getData} data-required/>
+    //               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+    //               <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+    //             </div>
+    //             <div class="form-item box-itemteam mail">
+    //               <input id="email1" type="email" name="email1"  onChange={getData} placeholder="email"  data-email onChange={getData} data-required/>
+    //               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+    //             </div>
+    //             </div>
+    //             <div class="diteam">
+    //             <div class="form-item box-itemteam">
+    //               <input  id ="name2" type="text" name="name2" onChange={getData}  placeholder="2nd Member"  onChange={getData} data-required/>
+    //               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+    //               <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+    //             </div>
+    //             <div class="form-item box-itemteam mail">
+    //               <input id="email2" type="email" name="email2" onChange={getData}  placeholder="email" data-email onChange={getData} data-required/>
+    //               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+    //             </div>
+    //             </div>
+    //             <div class="diteam">
+    //             <div class="form-item box-itemteam">
+    //               <input   id ="name3" type="text" name="name3"  onChange={getData} placeholder="3rd Member"  onChange={getData} data-required/>
+    //               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+    //               <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+    //             </div>
+    //             <div class="form-item box-itemteam mail">
+    //               <input id="email3" type="email" name="email3" onChange={getData}  placeholder="email" data-email onChange={getData} data-required/>
+    //               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+    //             </div>
+    //             </div>
+    //             <div class="diteam">
+    //             <div class="form-item box-itemteam">
+    //               <input  id ="name4"  type="text" name="name4" onChange={getData}  placeholder="4th Member" onChange={getData} data-required/>
+    //               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+    //               <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+    //             </div>
+    //             <div class="form-item box-itemteam mail">
+    //               <input  id ="email4" type="email" name="email4" onChange={getData}  placeholder="email"  data-email onChange={getData} data-required/>
+    //               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+    //             </div>
+    //             </div>
         
                
                 
-                <div class="form-item my-3">
-                  <button  class="submitteam" id="sbtn" onClick={onSubmit}>Submit</button>
-                </div>
-              </form>
-          </main>
+    //             <div class="form-item my-3">
+    //               <button  class="submitteam" id="sbtn" onClick={onSubmit}>Submit</button>
+    //             </div>
+    //           </form>
+    //       </main>
          
-          <i class="waveteam"></i>
-        </section>
-      </div>
+    //       <i class="waveteam"></i>
+    //     </section>
+    //   </div>
+    <div class="rowteam">
+    <section class="sectionteam">
+      <header  class="headerteam">
+        <h3>Register</h3>
+        <h4>Please fill your information bellow</h4>
+      </header>
+      <main  class="mainteam">
+        <form action="" id="TeamForm" >
+  
+            <div class="form-item box-itemteam" style={{marginBottom:'30px'}}>
+              <input id="teamname" type="text" name="teamname" placeholder="Team Name"  onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+            </div>
+            <div class ="" id='1'>
+            <span className="w-auto fs-5 text-dark fw-bold">Member 1</span>
+            <div className='row'>
+            <div class="form-item box-itemteam">
+              <input id ="name1" type="text" name="name1" placeholder="1st Member" onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+            </div>
+            <div class="form-item box-itemteam">
+              <input id="email1" type="email" name="email1" placeholder="Email"  data-email onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+            </div>
+            </div>
+            <div className='row'>
+            <div class="form-item box-itemteam">
+              <input id ="phone1" type="number" name="phone1" placeholder="Phone no." onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+            </div>
+            <div class="form-item box-itemteam">
+              <input id="roll1" type="number" name="rollnumber1" placeholder="Roll Number"  data-email onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+            </div>
+            </div>
+            </div>
+            <div class={me2? " animate_animated animate_slideInDown":"d-none"} id='2'>
+            <span className="w-auto fs-5 text-dark fw-bold">Member 2</span>
+            <div className='row'>
+            <div class="form-item box-itemteam">
+              <input  id ="name2" type="text" name="name2" placeholder="2nd Member"  onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+            </div>
+            <div class="form-item box-itemteam">
+              <input id="email2" type="email" name="email2" placeholder="Email" data-email onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+            </div>
+            </div>
+            <div className='row'>
+            <div class="form-item box-itemteam">
+              <input id ="phone2" type="number" name="phone2" placeholder="Phone no." onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+            </div>
+            <div class="form-item box-itemteam">
+              <input id="roll2" type="number" name="rollnumber2" placeholder="Roll Number"  data-email onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+            </div>
+            </div>
+            </div>
+            <div class={me3? " animate_animated animate_slideInDown":"d-none"} id='3'>
+            <span className="w-auto fs-5 text-dark fw-bold">Member 3</span>
+            <div className='row'>
+            <div class="form-item box-itemteam">
+              <input   id ="name3" type="text" name="name3" placeholder="3rd Member"  onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+            </div>
+            <div class="form-item box-itemteam">
+              <input id="email3" type="email" name="email3" placeholder="Email" data-email onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+            </div>
+            </div>
+            <div className='row'>
+            <div class="form-item box-itemteam">
+              <input id ="phone3" type="number" name="phone3" placeholder="Phone no." onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+            </div>
+            <div class="form-item box-itemteam">
+              <input id="roll3" type="number" name="rollnumber3" placeholder="Roll Number"  data-email onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+            </div>
+            </div>
+            </div>
+            <div class={me4? " animate_animated animate_slideInDown":"d-none"} id='4'>
+            <span className="w-auto fs-5 text-dark fw-bold">Member 4</span>
+            <div className='row'>
+            <div class="form-item box-itemteam">
+              <input  id ="name4"  type="text" name="name4" placeholder="4th Member" onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+            </div>
+            <div class="form-item box-itemteam">
+              <input  id ="email4" type="email" name="email4" placeholder="Email"  data-email onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+            </div>
+            </div>
+            <div className='row'>
+            <div class="form-item box-itemteam">
+              <input id ="phone4" type="number" name="phone4" placeholder="Phone no." onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+            </div>
+            <div class="form-item box-itemteam">
+              <input id="roll4" type="number" name="rollnumber4" placeholder="Roll Number"  data-email onChange={getData} data-required/>
+              <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+            </div>
+            </div>
+            </div>
+
+
+            <div className='row'>
+            <span className={!me2?'btn btn-light fs-6 my-2 rounded-pill disabled d-none':'btn btn-light fs-6 my-2 rounded-pill animate_animated animate_slideInUp'} onClick={delmember}>
+                <i className='bi bi-person-dash'></i> Remove Member
+            </span>
+            <span className={me4?'btn btn-light fs-6 my-2 rounded-pill disabled d-none':'btn btn-light fs-6 my-2 rounded-pill animate_animated animate_slideInUp'} onClick={addmember}>
+                <i className='bi bi-person-add'></i> Add Member
+            </span>
+            </div>
+    
+           
+            
+            <div class="form-item my-3 mx-auto">
+              <button  class="submitteam" id="sbtn"  onClick={onSubmit} >Submit</button>
+            </div>
+          </form>
+      </main>
+     
+      <i class="waveteam"></i>
+    </section>
+  </div>
+    
   )
 }
 

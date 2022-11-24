@@ -9,6 +9,7 @@ const EventDetail = () => {
     const {ide} = useParams();
     const history = useHistory();
     const {id,eventName,eventImage,eventDescription,rules} = data[ide];
+    // console.log(eventDescription);
     console.log(eventImage);
     const currentName = useStore((state) => state.currentName);
 const { setCurrentName } = useStore();
@@ -34,10 +35,10 @@ const { setCurrentName } = useStore();
             <div class="banner45"><img src={eventImage} alt="Event image"></img></div>
             <div class="description45" id="desc">
                 <h1 id="desgh">{eventName}</h1> <br/><br/>
-                <p>{eventDescription}</p>
+                <p >{eventDescription}</p>
     
                { 
-              
+                
                <Link to={`/TeamReg/${ide}`}><button class="regis fourth" onClick={(e)=>{checker(e,ide)}}>Registor Now</button></Link>   
                 }
                </div>

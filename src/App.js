@@ -10,29 +10,44 @@ import Events from './components/Events';
 import Footer from './components/Footer';
 import EventDetail from './components/EventDetail';
 import TeamReg from './components/TeamReg';
+import Profile from './components/Profile';
+// import Test from './components/Test';
+import Navbar1 from './components/Navbar1';
+import Timer from './components/Timer';
+// import Test from './components/Test';
 
 const App = () => {
   return (
   <>
     <Router>
-       <Navbar/>
+      
        <Switch>
           <Route exact path="/">
-           
+          <Navbar/>
             <Home />
+            <Timer/>
             <About/>
             <Events/>
             <Footer/>
             </Route> 
-          <Route exact path="/signup"><SignUp/></Route> 
-        
+          <Route exact path="/signup">
+            <Navbar />
+            <SignUp/>
+          </Route> 
+          <Route exact path="/profile">
+          <Navbar1/>
+                       <Profile/>
+          </Route>
           <Route exact path="/EventDetail/:ide">
+          <Navbar1/>
           <EventDetail
             
           />
           </Route>
           <Route exact path = "/TeamReg/:ide">
+          <Navbar1/>
          <TeamReg/>
+         {/* <Test/> */}
           </Route>
        </Switch>
         

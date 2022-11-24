@@ -1,20 +1,38 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,700");
+html {
+  font-size: 10px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+}
 
-.rowteam {
-  font-size: 10px;
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "PT Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.428571429;
+  font-weight: 400;
+  color: #fff;
+  color: #262626;
+
+  /* font-family: "PT Sans", sans-serif;
+font-size: 16px;
+line-height: 1.428571429;
+font-weight: 400;
+color: #5c5555; */
+}
+
+.row {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  top: 50px;
 }
-.rowform{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.sectionteam {
-  font-size: 10px;
+
+.section {
     width: 50%;
   background-color: #3D4067;
   background: linear-gradient(#0093F9, #199fff );
@@ -25,49 +43,71 @@
   flex-direction: column;
 }
 
-.headerteam,
-.mainteam{
+header,
+main,
+footer {
   display: block;
   position: relative;
   z-index: 1;
 }
 
-.headerteam {
+header {
   padding: 48px;
 }
 @media (max-width: 440px) {
-  .headerteam {
+  header {
     padding: 48px 24px;
   }
 }
-.headerteam > h3 {
+header > h3 {
   font-size: 44px;
   font-weight: 700;
   margin-bottom: 8px;
 }
-.headerteam > h4 {
+header > h4 {
   font-size: 22px;
   font-weight: 400;
   letter-spacing: 1px;
 }
 
-.mainteam {
+main {
   flex: 1;
   padding: 0 48px;
 }
 @media (max-width: 440px) {
-  .mainteam {
+  main {
     padding: 0 24px;
   }
 }
 
-#TeamForm{
+footer {
+  width: 100%;
+  background-color: #524F81;
+  padding: 16px;
+  align-self: center;
+  text-align: center;
+  margin-top: 32px;
+}
+footer a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+form {
   height: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
+.label {
+  color: rgba(226, 227, 232, 0.75);
+  font-size: 16px;
+}
 
 small {
   display: none;
@@ -78,6 +118,7 @@ small.errorOnce {
 
 .form-item input[type=text],
 .form-item input[type=number],
+.form-item input[type=tel],
 .form-item input[type=email] {
   display: block;
   color: #ffffff;
@@ -101,7 +142,7 @@ small.errorOnce {
   color: red;
 }
 
-.box-itemteam {
+.box-item {
     width: 280px;
     padding: 20px;
     height: 60px;
@@ -180,7 +221,7 @@ small.errorOnce {
   font-size: 16px;
 }
 
-.submitteam {
+.submit {
   display: inline-block;
   font-size: 18px;
   font-weight: 700;
@@ -192,13 +233,13 @@ small.errorOnce {
   cursor: pointer;
   transition: all ease 0.2s;
 }
-.submitteam:hover {
+.submit:hover {
   /* background-color: #EDA261; */
   background-color: #98ECFE;
   border: 2px solid #fff  ;
 }
 
-.waveteam {
+.wave {
   position: absolute;
   top: 0;
   left: 50%;
@@ -235,7 +276,7 @@ small.errorOnce {
  width:100%;
  height: 100%;
 }
-.diteam{
+.di{
     display: flex;
 
 }

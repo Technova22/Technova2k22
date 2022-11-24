@@ -405,11 +405,12 @@ margin-bottom: 10px;
   color: #FFFFFF;
 }
 
-.btn {
+.btn10 {
   cursor: pointer;
   margin-top: 1.5rem;
   padding: 0.75rem 1.5rem;
   font-size: 0.65rem;
+  border-radius: 10px;
   font-weight: bold;
   letter-spacing: 0.025rem;
   text-transform: uppercase;
@@ -417,11 +418,11 @@ margin-bottom: 10px;
   background-color: black;
   border: none;
 }
-.btn:hover {
+.btn10:hover {
   background-color: #0d0d0d;
   color:rgba(224, 36, 36, 0.664);
 }
-.btn:focus {
+.btn10:focus {
   outline: 1px dashed yellow;
   outline-offset: 3px;
 }
@@ -574,4 +575,14 @@ margin-bottom: 10px;
     outline: none;
     color: var(--color-pink-500);
   }
+
+  .clock {
+    width: 650px;
+    position: absolute;
+    top: 50%;
+    
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  
   

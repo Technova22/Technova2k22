@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link,useHistory } from 'react-router-dom';
 import '../signup.css';
-import { getDatabase, ref, set , get ,child, update, remove, push, onValue} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+import { getDatabase, ref, set , get ,child, update, remove, push, onValue} from "firebase/database";
 
-import { getAuth, signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile, sendEmailVerification,sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile, sendEmailVerification,sendPasswordResetEmail } from "firebase/auth";
 import { db,auth} from './misc/firebase'
 import { useStore } from '../store'
 import { useToaster, Message, Modal, Button, Placeholder } from 'rsuite';
@@ -12,7 +12,14 @@ const SignUp = () => {
   const toaster = useToaster();
   let history = useHistory();
   const currentName = useStore((state) => state.currentName);
-  const { setCurrentName } = useStore();
+  const currentEmail = useStore((state) => state.currentEmail);
+  const currentRoll = useStore((state) => state.currentRoll);
+  // const currentPhone = useStore((state) => state.currentPhone);
+  // const currentOrganization = useStore((state) => state.currentOrganization);
+  // const currentBranch = useStore((state) => state.currentBranch);
+  // const currentSemester = useStore((state) => state.currentSemester);
+
+  const { setCurrentName,setCurrentEmail,setCurrentRoll } = useStore();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -137,11 +144,13 @@ function validate_email(email) {
        console.log(user);
     });
      updateProfile(auth.currentUser, {
-      displayName: credentials.fullname
+      displayName: credentials.fullname,
+      email:credentials.email,
+      photoURL:credentials.rollno
      }).then(()=>{
      
       console.log("updated");
-
+      
      }).catch((e)=>{
       console.log(e);
      })
@@ -156,6 +165,7 @@ function validate_email(email) {
      
     // Push to Firebase Database
     set(child(database_ref,'users/'+rollno),user_data);
+    
     // DOne
     toaster.push(
       <Message type="success" closable>
@@ -256,12 +266,7 @@ const validate_rollno=async(rollno)=>{
   // Get all our input fields
  
   e.preventDefault();
-  // Validate input fields
-  // if (validate_email(email) == false || validate_password(password) == false) {
-  //   alert('Email or Password is Outta Line!!')
-  //   return
-  //   // Don't continue running the code
-  // }
+
 
  signInWithEmailAndPassword(auth, e_mail, e_password)
   .then(function() {
@@ -269,6 +274,7 @@ const validate_rollno=async(rollno)=>{
   
     var user = auth.currentUser
     console.log(user.displayName)
+    console.log(user.email)
     // Add this user to Firebase Database
     // var database_ref = db.ref()
     if(user.emailVerified != true){
@@ -292,7 +298,10 @@ const validate_rollno=async(rollno)=>{
 
     // DOne
     setCurrentName(user.displayName)
+    setCurrentEmail(user.email)
+    setCurrentRoll(user.photoURL)
     console.log(currentName)
+    console.log(currentEmail)
     history.push("/")
    toaster.push(
       <Message type="success" closable>
@@ -383,7 +392,7 @@ function resetpassword(){
                     <input type="password" id="confirmpassword" name="confirmpassword" required   onChange={onChange}/>
                     <label name="confirmpassword" htmlFor="confirmpassword" >Confirm Password</label>
                   </div>
-                <button className="btn"  >Sign Up</button>
+                <button className="btnsign"  >Sign Up</button>
             </form>
         </div>
     
@@ -419,7 +428,7 @@ function resetpassword(){
                   </Button>
                 </Modal.Footer>
               </Modal>
-                <button className="btn">Log In</button>
+                <button className="btnsign">Log In</button>
             </form>
         </div>
     
@@ -427,10 +436,10 @@ function resetpassword(){
         <div className="container__overlay">
             <div className="overlay">
                 <div className="overlay__panel overlay--left">
-                    <button className="btn" id="signIn" onClick={sweeper}>Sign In</button>
+                    <button className="btnsign" id="signIn" onClick={sweeper}>Sign In</button>
                 </div>
                 <div className="overlay__panel overlay--right">
-                    <button className="btn" id="signUp" onClick={sweeper1} >Sign Up</button>
+                    <button className="btnsign" id="signUp" onClick={sweeper1} >Sign Up</button>
                 </div>
             </div>
         </div>

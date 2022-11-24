@@ -1,28 +1,33 @@
-import React from 'react'
+import React,{useRef} from 'react'
 import {Link } from 'react-router-dom'
 import { useStore } from '../store'
 import { Dropdown } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
+import Home from './Home';
+import About from './About';
+// import About from './About';
 const Navbar = () => {
-    const nav = document.querySelector('.nav1')
+  const refer = useRef(null);
+    // const nav = document.querySelector('.nav1')
+    // const nav1 = ref.current;
 window.addEventListener('scroll', fixNav)
 
 function fixNav() {
-    if(window.scrollY > nav.offsetHeight + 150) {
-        nav.classList.add('active1');
+    if(window.scrollY >  150) {
+        refer.current.classList.add('active1');
     } else {
-        nav.classList.remove('active1');
+        refer.current.classList.remove('active1');
     }
 }
 const currentName = useStore((state) => state.currentName);
-const { setCurrentName } = useStore();
+const { setCurrentName ,setCurrentEmail} = useStore();
 
 
 const CustomDropdown = ({ ...props }) => (
   <Dropdown {...props} >
-    <Dropdown.Item >View Profile</Dropdown.Item>
-    <Dropdown.Item>Registered Events</Dropdown.Item>
-    <Dropdown.Item onClick={()=>{setCurrentName('') }}>Signout</Dropdown.Item>
+    <Link to='/profile'><Dropdown.Item >View Profile</Dropdown.Item></Link>
+    
+    <Dropdown.Item onClick={()=>{setCurrentName('') ;setCurrentEmail('')}}>Signout</Dropdown.Item>
     
    
   </Dropdown>
@@ -30,12 +35,12 @@ const CustomDropdown = ({ ...props }) => (
   return (
    <>
      <header>
-            <nav class="nav1">
+            <nav class="nav1" ref={refer}>
                 <div class="container">
-                    <h3 class="logo"><Link href="/index.html">Technova22</Link></h3>
+                    <h3 class="logo"><Link href="/">Technova22</Link></h3>
                     <ul className='ulnavbar'>
                         <li><Link to="/" class="current">Home</Link></li>
-                        <li><Link to="#about">About</Link></li>
+                        <li><a href="#about">ABout</a></li>
                         <li><Link to="./eventDetails.html">Events</Link></li>
                         <li><Link to="#">Gallery</Link></li>
                         <li><Link to="#">Contact</Link></li>
@@ -54,6 +59,7 @@ const CustomDropdown = ({ ...props }) => (
                 </div>
             </nav>
         </header>
+      
    </>
   )
 }

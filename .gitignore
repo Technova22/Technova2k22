@@ -4,9 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/src/components/Timer.js
 # testing
 /coverage
+/firebase-debug.log
 
 # production
 /build
