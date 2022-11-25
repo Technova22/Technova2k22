@@ -28,10 +28,13 @@
 
 .navnew ul {
 	align-items: center;
-	display: flex;
+	/* display: flex; */
     padding-top: 15px;
 	justify-content: center;
 	list-style-type: none;
+}
+.navnew li{
+	display: inline-block;
 }
 
 .navnew a {

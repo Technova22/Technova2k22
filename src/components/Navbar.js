@@ -3,8 +3,7 @@ import {Link } from 'react-router-dom'
 import { useStore } from '../store'
 import { Dropdown } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
-import Home from './Home';
-import About from './About';
+
 // import About from './About';
 const Navbar = () => {
   const refer = useRef(null);
@@ -27,8 +26,7 @@ const CustomDropdown = ({ ...props }) => (
   <Dropdown {...props} >
     <Link to='/profile'><Dropdown.Item >View Profile</Dropdown.Item></Link>
     
-    <Dropdown.Item onClick={()=>{setCurrentName('') ;setCurrentEmail('')}}>Signout</Dropdown.Item>
-    
+    <Link to='/'><Dropdown.Item onClick={()=>{setCurrentName('');setCurrentEmail('') }}>Signout</Dropdown.Item></Link>    
    
   </Dropdown>
 );
@@ -41,12 +39,12 @@ const CustomDropdown = ({ ...props }) => (
                     <ul className='ulnavbar'>
                         <li><Link to="/" class="current">Home</Link></li>
                         <li><a href="#about">ABout</a></li>
-                        <li><Link to="./eventDetails.html">Events</Link></li>
-                        <li><Link to="#">Gallery</Link></li>
-                        <li><Link to="#">Contact</Link></li>
+                        <li><Link to="/AllEvent">Events</Link></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><Link to="/contact">Contact</Link></li>
                         {
                             
-                          (currentName =='') ?
+                          (currentName ==='') ?
                         <li><Link to="/signup" ><button class="btn4">Sign Up</button></Link></li>     
                      :
                        <CustomDropdown title={currentName} trigger={['click', 'hover']} /> 

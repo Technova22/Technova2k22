@@ -36,6 +36,7 @@ const [credentials, setCredentials] = useState({
   password: "",
   confirmpassword:""
 });
+console.log(credentials)
 
 const [logincred, setlogincred] = useState({
   e_mail:'',

@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /src/components/Timer.js
+# /src/components/AllEvent.js
 # testing
 /coverage
 /firebase-debug.log

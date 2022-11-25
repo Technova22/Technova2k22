@@ -14,6 +14,9 @@ import Profile from './components/Profile';
 // import Test from './components/Test';
 import Navbar1 from './components/Navbar1';
 import Timer from './components/Timer';
+import Contactus from './components/Contactus';
+import Allevents from './components/AllEvent';
+import Gallery from './components/Gallery';
 // import Test from './components/Test';
 
 const App = () => {
@@ -22,18 +25,27 @@ const App = () => {
     <Router>
       
        <Switch>
+        <Route exact path='/AllEvent'>
+          <Navbar1/>
+            <Allevents/>
+        </Route>
           <Route exact path="/">
           <Navbar/>
             <Home />
             <Timer/>
             <About/>
             <Events/>
+            <Gallery/>
             <Footer/>
             </Route> 
           <Route exact path="/signup">
             <Navbar />
             <SignUp/>
           </Route> 
+          <Route exact path='/contact'>
+            <Navbar1/>
+            <Contactus/>
+          </Route>
           <Route exact path="/profile">
           <Navbar1/>
                        <Profile/>
