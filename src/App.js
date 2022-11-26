@@ -12,7 +12,7 @@ import EventDetail from './components/EventDetail';
 import TeamReg from './components/TeamReg';
 import Profile from './components/Profile';
 // import Test from './components/Test';
-import Navbar1 from './components/Navbar1';
+
 import Timer from './components/Timer';
 import Contactus from './components/Contactus';
 import Allevents from './components/AllEvent';
@@ -26,7 +26,7 @@ const App = () => {
       
        <Switch>
         <Route exact path='/AllEvent'>
-          <Navbar1/>
+          <Navbar/>
             <Allevents/>
         </Route>
           <Route exact path="/">
@@ -43,21 +43,21 @@ const App = () => {
             <SignUp/>
           </Route> 
           <Route exact path='/contact'>
-            <Navbar1/>
+            <Navbar/>
             <Contactus/>
           </Route>
           <Route exact path="/profile">
-          <Navbar1/>
+          <Navbar/>
                        <Profile/>
           </Route>
           <Route exact path="/EventDetail/:ide">
-          <Navbar1/>
+          <Navbar/>
           <EventDetail
             
           />
           </Route>
           <Route exact path = "/TeamReg/:ide">
-          <Navbar1/>
+          <Navbar/>
          <TeamReg/>
          {/* <Test/> */}
           </Route>

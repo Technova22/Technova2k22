@@ -9,19 +9,19 @@ const Gallery = () => {
     <div id='line_gallery'></div>
      <div class="container_gallery">
   <div class="box_gallery">
-    <img src="images/7.jpg"/>
+    <img src="images/110.jpeg"/>
     <span>CSS</span>
   </div>
   <div class="box_gallery">
-    <img src="https://source.unsplash.com/1000x802"/>
+    <img src="images/111.jpeg"/>
     <span>Image</span>
   </div>
   <div class="box_gallery">
-    <img src="https://source.unsplash.com/1000x804"/>
+    <img src="images/112.jpeg"/>
     <span>Hover</span>
   </div>
   <div class="box_gallery">
-    <img src="https://source.unsplash.com/1000x806"/>
+    <img src="images/113.jpeg"/>
     <span>Effect</span>
   </div>
 </div>

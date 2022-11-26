@@ -3,14 +3,14 @@ import {Link} from 'react-router-dom'
 import { Input,InputGroup } from "rsuite";
 import SearchIcon from '@rsuite/icons/Search';
 import "../AllEvent.css";
-import {sunshine} from '../Data'
-import {lisoc} from '../Data'
-import {pratibimb} from '../Data'
+import {featured,sunshine,lisoc,pratibimb} from '../Data'
+
 const Allevents = () => {
   console.log(sunshine)
   var [filtersunshine, setFiltersunshine] = useState(sunshine);
   var [filterlisoc, setFilterlisoc] = useState(lisoc);
   var [filterpratibimb, setFilterpratibimb] = useState(pratibimb);
+  var [filterfeatured, setfilterfeatured] = useState(featured);
   const [searchInput, setSearchInput] = useState("");
   console.log(searchInput.split(" ").join(""))
   const onChange = (e) => {
@@ -36,6 +36,11 @@ const Allevents = () => {
 
   function search() {
     // eslint-disable-next-line
+    if (searchInput.split(" ").join("")!= "") {
+      setfilterfeatured([]);
+    }else{
+      setfilterfeatured(featured);
+    }
     
    var searchSunshine = sunshine.filter((val)=>{
       if (searchInput.split(" ").join("")=== "" ||searchInput === "") {
@@ -121,6 +126,74 @@ const Allevents = () => {
           onChange={onChange}
         /> */}
       </div>
+      {filterfeatured.length>0?
+<div >
+      <div >
+          <h2 style={{
+              padding: "14px",
+              marginTop: "30px",
+              paddingLeft: "60px",
+              marginRight: "40px",
+              marginBottom: "0",
+              fontWeight: "bold",
+            }}>Featured </h2>
+      </div>
+      <div
+        style={{
+          border: "1.5px solid red ",
+          backgroundColor: "red",
+          width: "90%",
+          margin: " 0 5px ",
+          marginBottom: "40px",
+          marginLeft: "60px",
+          marginRight: "40px",
+        }}
+      ></div>
+
+<div className="container " style={{maxWidth:"90%"}}>
+        <div className="row " style={{padding:"25px",background:"white",borderRadius:"5px"}} >
+          {filterfeatured
+            .map((item) => {
+              return (
+                <div className="col-md-4 mx-1cont shadow " style={{borderRadius:"5px",padding:"10px"}} key={item.id}>
+                  <div className="my-2">
+                    <div className="card ">
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-end",
+                          position: "absolute",
+                          right: "0",
+                        }}
+                      ></div>
+                     <img style={{height:"270px"}}
+                        src={
+                          !item.eventImage
+                            ? "https://usrimg-full.fark.net/g/gJ/fark_gJPBYfChZtz_Kj6r6f9RdMPkoaw.jpg?AWSAccessKeyId=UKDINQXVGV49TCSSKJLK&Expires=1661140800&Signature=lmASSAQLjYTCi%2BsK738uTIx0cNs%3D"
+                            : item.eventImage
+                        }
+                        className="card-img-top"
+                        alt=""
+                      />
+                      <div className="card-body">
+                       <h5 className="card-title" >{item.eventName}</h5>
+                        <p className="card-text" style={{fontSize:"14px"}}>
+                          {item.eventDescription.slice(0, 50)}...
+                        </p>
+  <Link to="/eventDetails" className="btn btn-sm btn-dark">Read More</Link>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+
+
+      </div>:""
+}
       {filtersunshine.length>0?
 <div >
       <div >
