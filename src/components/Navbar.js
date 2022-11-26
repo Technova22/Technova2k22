@@ -56,7 +56,7 @@ const CustomDropdown = ({ ...props }) => (
                         {
                             
                             (currentName ==='') ?
-                          <li><Link to="/signup" ><button class="btn4">Sign Up</button></Link></li>     
+                          <li><Link to="/signup" ><button class="btn4 btn btn-outline-primary">Sign Up</button></Link></li>     
                        :
                        <CustomDropdown  title={currentName} trigger={['click', 'hover']} />
                         
