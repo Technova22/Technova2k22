@@ -39,6 +39,7 @@ const Allevents = () => {
     if (searchInput.split(" ").join("")!= "") {
       setfilterfeatured([]);
     }else{
+      if (!document.querySelector(".rs-input").placeholder) document.querySelector(".rs-input").placeholder="Search";
       setfilterfeatured(featured);
     }
     
@@ -180,7 +181,7 @@ const Allevents = () => {
                         <p className="card-text" style={{fontSize:"14px"}}>
                           {item.eventDescription.slice(0, 50)}...
                         </p>
-  <Link to="/eventDetails" className="btn btn-sm btn-dark">Read More</Link>
+  <Link to={"/EventDetail/"+item.id} className="btn btn-sm btn-dark">Read More</Link>
                         
                       </div>
                     </div>
@@ -251,7 +252,7 @@ const Allevents = () => {
                         <p className="card-text">
                           {item.eventDescription.slice(0,100)}...
                         </p>
-  <Link to="/eventDetails"    className="btnallevent btn-sm btn-dark">Read More</Link>
+  <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark">Read More</Link>
                         
                       </div>
                     </div>
@@ -320,7 +321,7 @@ const Allevents = () => {
                         <p className="card-text">
                           {item.eventDescription.slice(0,100)}...
                         </p>
-  <Link to="/eventDetails"    className="btnallevent btn-sm btn-dark">Read More</Link>
+  <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark">Read More</Link>
 
                       </div>
                     </div>
@@ -375,7 +376,7 @@ const Allevents = () => {
     
   <h5 className="card-title">{item.eventName}</h5>
   <p className="card-text">{item.eventDescription.slice(0,100)}...</p>
-  <Link to="/eventDetails"    className="btnallevent btn-sm btn-dark">Read More</Link>
+  <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark">Read More</Link>
   
   </div>
   </div>
