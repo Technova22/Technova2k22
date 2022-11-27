@@ -146,9 +146,7 @@ const Allevents = () => {
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
-          marginLeft: "60px",
-          marginRight: "40px",
-        }}
+        }} className="mx-auto"
       ></div>
 
 <div className="container " style={{maxWidth:"90%"}}>
@@ -216,9 +214,7 @@ const Allevents = () => {
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
-          marginLeft: "60px",
-          marginRight: "40px",
-        }}
+        }} className="mx-auto"
       ></div>
 
 <div className="container " style={{maxWidth:"90%"}}>
@@ -284,9 +280,7 @@ const Allevents = () => {
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
-          marginLeft: "60px",
-          marginRight: "40px",
-        }}
+        }} className="mx-auto"
       ></div>
 
       <div className="container" style={{maxWidth:"90%"}}>
@@ -349,9 +343,7 @@ const Allevents = () => {
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
-          marginLeft: "60px",
-          marginRight: "40px",
-    }}></div>
+    }} className="mx-auto"></div>
       
       <div className="container" style={{maxWidth:"90%"}}>
       <div className="row my-1" style={{padding:"25px",background:"white",borderRadius:"5px"}} >

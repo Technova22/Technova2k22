@@ -51,9 +51,9 @@ const Navbar1 = () => {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="ms-auto collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className='navbar-nav ms-auto'>
-            <li className='nav-item'><Link to="/" class="ms-auto current">Home</Link></li>
-            <li className='nav-item'><a href="#about">About</a></li>
+          <ul className='navbar-nav ms-auto my-auto p-0'>
+            <li className='nav-item'><Link to="/" class="ms-auto">Home</Link></li>
+            <li className='nav-item'><a href="/#about">About</a></li>
             <li className='nav-item'><Link to="/AllEvent">Events</Link></li>
             <li className='nav-item'><a href="#gallery">Gallery</a></li>
             <li className='nav-item'><Link to="/contact">Contact</Link></li>
