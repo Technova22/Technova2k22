@@ -146,9 +146,7 @@ const Allevents = () => {
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
-          marginLeft: "60px",
-          marginRight: "40px",
-        }}
+        }} className="mx-auto"
       ></div>
 
 <div className="container " style={{maxWidth:"90%"}}>
@@ -156,7 +154,7 @@ const Allevents = () => {
           {filterfeatured
             .map((item) => {
               return (
-                <div className="col-md-4 mx-1cont shadow " style={{borderRadius:"5px",padding:"10px"}} key={item.id}>
+                <div className="col-md-4 mx-1cont shadow p-2 rounded mb-2" style={{borderRadius:"5px",padding:"10px"}} key={item.id}>
                   <div className="my-2">
                     <div className="card ">
                       <div
@@ -181,7 +179,7 @@ const Allevents = () => {
                         <p className="card-text" style={{fontSize:"14px"}}>
                           {item.eventDescription.slice(0, 50)}...
                         </p>
-  <Link to={"/EventDetail/"+item.id} className="btn btn-sm btn-dark">Read More</Link>
+  <Link to={"/EventDetail/"+item.id} className="btn btn-sm btn-dark mt-2">Read More</Link>
                         
                       </div>
                     </div>
@@ -216,9 +214,7 @@ const Allevents = () => {
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
-          marginLeft: "60px",
-          marginRight: "40px",
-        }}
+        }} className="mx-auto"
       ></div>
 
 <div className="container " style={{maxWidth:"90%"}}>
@@ -252,7 +248,7 @@ const Allevents = () => {
                         <p className="card-text">
                           {item.eventDescription.slice(0,100)}...
                         </p>
-  <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark">Read More</Link>
+  <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark mt-2">Read More</Link>
                         
                       </div>
                     </div>
@@ -284,9 +280,7 @@ const Allevents = () => {
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
-          marginLeft: "60px",
-          marginRight: "40px",
-        }}
+        }} className="mx-auto"
       ></div>
 
       <div className="container" style={{maxWidth:"90%"}}>
@@ -321,7 +315,7 @@ const Allevents = () => {
                         <p className="card-text">
                           {item.eventDescription.slice(0,100)}...
                         </p>
-  <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark">Read More</Link>
+  <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark mt-2">Read More</Link>
 
                       </div>
                     </div>
@@ -349,9 +343,7 @@ const Allevents = () => {
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
-          marginLeft: "60px",
-          marginRight: "40px",
-    }}></div>
+    }} className="mx-auto"></div>
       
       <div className="container" style={{maxWidth:"90%"}}>
       <div className="row my-1" style={{padding:"25px",background:"white",borderRadius:"5px"}} >
@@ -376,7 +368,7 @@ const Allevents = () => {
     
   <h5 className="card-title">{item.eventName}</h5>
   <p className="card-text">{item.eventDescription.slice(0,100)}...</p>
-  <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark">Read More</Link>
+  <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark mt-2">Read More</Link>
   
   </div>
   </div>

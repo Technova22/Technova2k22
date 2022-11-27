@@ -1,4 +1,3 @@
-
 .bodybill{
 	align-items: center;
 	/* background-color: red; */
@@ -214,7 +213,13 @@
 	text-align: center;
 }
 
-
+.password-toogle-icon {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    z-index: 1000;
+    cursor: pointer;
+}
 
 @keyframes show {
 	0%,

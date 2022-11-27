@@ -328,6 +328,14 @@ margin-bottom: 10px;
     height: 350px;
   }
 }
+@media (max-width: 600px) {
+  .card1 {
+    height: 350px;
+    padding: 10px 2px;
+  }
+
+
+}
 .card1:before {
   content: "";
   position: absolute;
@@ -474,10 +482,12 @@ margin-bottom: 10px;
   }
 }
 
+  @media (min-width: 768px) {
 .about {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+  }
   }
 
 .info {
