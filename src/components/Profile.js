@@ -60,13 +60,13 @@ let count=0;
             {
                 let arr = [team.val().mail_id1, team.val().mail_id2, team.val().mail_id3, team.val().mail_id4];
 
-                let row_content = [[team.val().member1, team.val().mail_id1, team.val().username1],[team.val().member2, team.val().mail_id2, team.val().username2],[team.val().member3, team.val().mail_id3, team.val().username3],[team.val().member4, team.val().mail_id4, team.val().username4]];
+                let row_content = [[team.val().member1, team.val().mail_id1, team.val().roll_no1],[team.val().member2, team.val().mail_id2, team.val().roll_no2],[team.val().member3, team.val().mail_id3, team.val().roll_no3],[team.val().member4, team.val().mail_id4, team.val().roll_no4]];
 
                 console.log(row_content);
 
-                // let row2_content = [team.val().member2, team.val().mail_id2, team.val().username2];
-                // let row3_content = [team.val().member3, team.val().mail_id3, team.val().username3];
-                // let row4_content = [team.val().member4, team.val().mail_id4, team.val().username4];
+                // let row2_content = [team.val().member2, team.val().mail_id2, team.val().roll_no2];
+                // let row3_content = [team.val().member3, team.val().mail_id3, team.val().roll_no3];
+                // let row4_content = [team.val().member4, team.val().mail_id4, team.val().roll_no4];
             
                 console.log(`email matched in team: ${team.key} and event ${event.key} `);
                  
@@ -88,12 +88,12 @@ let count=0;
                 name.innerHTML = "Name";
                 let email = document.createElement('th');
                     email.innerHTML = "Email";
-                let username = document.createElement('th');
-                username.innerHTML = "Username";
+                let roll_no = document.createElement('th');
+                roll_no.innerHTML = "Roll No";
                  
                 rhead.appendChild(name);
                 rhead.appendChild(email);
-                rhead.appendChild(username);
+                rhead.appendChild(roll_no);
                         
                 tb.appendChild(rhead);
                 for(let i = 0; i< 4; i++)
