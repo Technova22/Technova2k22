@@ -44,7 +44,7 @@ const Navbar1 = () => {
   return (
     <header>
 
-      <nav className="d-block navnew navbar navbar-expand-lg" ref={refer}>
+      <nav className="d-block navnew navbar navbar-expand-lg w-100w" ref={refer}>
         <div class="containernew">
           <h3 class="logo me-auto"><Link to="/">Technova22</Link></h3>
           <button class="ms-auto navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
