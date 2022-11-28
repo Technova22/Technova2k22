@@ -45,22 +45,24 @@ const Navbar1 = () => {
     <header>
 
       <nav className="d-block navnew navbar navbar-expand-lg w-100w" ref={refer}>
-        <div class="containernew">
-          <h3 class="logo me-auto"><Link to="/">Technova22</Link></h3>
-          <button class="ms-auto navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="containernew row">
+          <h3 class="logo me-auto col"><Link to="/">Technova22</Link></h3>
+          <button class="ms-auto navbar-toggler w-auto" align="right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="ms-auto collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="ms-auto collapse navbar-collapse w-auto" id="navbarSupportedContent">
           <ul className='navbar-nav ms-auto my-auto p-0'>
-            <li className='nav-item'><Link to="/" class="ms-auto">Home</Link></li>
-            <li className='nav-item'><a href="/#about">About</a></li>
-            <li className='nav-item'><Link to="/AllEvent">Events</Link></li>
-            <li className='nav-item'><a href="#gallery">Gallery</a></li>
-            <li className='nav-item'><Link to="/contact">Contact</Link></li>
-            {
-
-              (currentName === '') ?
-                <li><Link to="/signup" ><button class="btn4 btn btn-outline-primary text-light">Sign Up</button></Link></li>
+            <li className='nav-item py-2'><Link to="/" class="ms-auto">Home</Link></li>
+            <li className='nav-item py-2'><a href="/#about">About</a></li>
+            <li className='nav-item py-2'><Link to="/AllEvent">Events</Link></li>
+            <li className='nav-item py-2'><a href="#gallery">Gallery</a></li>
+            <li className='nav-item py-2'><Link to="/contact">Contact</Link></li>
+            {(currentName === '') ?
+                <li className='nav-item py-2'>
+                <Link to="/signup" class="btn4 btn btn-outline-primary">
+                  Sign Up
+                </Link>
+                </li>
                 :
                 <CustomDropdown title={currentName} trigger={['click', 'hover']} />
 
