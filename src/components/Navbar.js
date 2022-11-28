@@ -53,15 +53,16 @@ const CustomDropdown = ({ ...props }) => (
     <header>
 
       <nav className="d-block navnew navbar navbar-expand-lg w-100w" ref={refer}>
-        <div class="containernew">
+        <div class="containernew row ">
          
-          <h3 class="logo me-auto"><Link to="/">Technova22</Link></h3>
-          <button class="ms-auto navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="  navbar-toggler-icon "  ref={referburger} ></span>
+          <h3 class="logo me-auto col"><Link to="/">Technova22</Link></h3>
+        
+            <button class="ms-auto navbar-toggler w-auto" align="right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"  ref={referburger}></span>
           </button>
-          <div class="ms-auto collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="ms-auto collapse navbar-collapse w-auto" id="navbarSupportedContent">
           <ul className='navbar-nav ms-auto  my-auto p-0'>
-            <li className='nav-item'><NavLink to="/" activeClassName="active" class="ms-auto" exact>Home</NavLink></li>
+            <li className='nav-item'><NavLink to="/"  activeClassName="active"  exact>Home</NavLink></li>
             <li className='nav-item'><a href="#about" className={location.hash=='#about'?'active':''}>About</a></li>
             <li className='nav-item'><NavLink to="/AllEvent" activeClassName="active" exact>Events</NavLink></li>
             <li className='nav-item'><a href="#gallery"  className={location.hash=='#gallery'?'active':''}>Gallery</a>
@@ -72,6 +73,7 @@ const CustomDropdown = ({ ...props }) => (
 
               (currentName === '') ?
                 <li><Link to="/signup" ><button class="btn8  text-light">Sign Up</button></Link></li>
+       
                 :
                 <CustomDropdown title={currentName} trigger={['click', 'hover']} />
 

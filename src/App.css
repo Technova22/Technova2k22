@@ -195,19 +195,19 @@ font-weight: bold;
 	position: relative;
 	height: 100%;
 	width:100%;
-	/* background: url('../public/images/22-min.jpg'); */
+	/* background: url('../public/images/101.jpeg'); */
 	background-size: 100% 100%;
 	background-position: center;
 	background-attachment: fixed;
 }
 #carouselExampleIndicators .carousel-inner .carousel-item:nth-child(2){
-	/* background: url('../public/images/21-min.jpg'); */
+	/* background: url('../public/images/102.jpeg'); */
 	background-size: 100% 100%;
 	background-position: center;
 	background-attachment: fixed;
 }
 #carouselExampleIndicators .carousel-inner .carousel-item:nth-child(3){
-	/* background: url('../public/images/18-min.jpg'); */
+	/* background: url('../public/images/103.jpeg'); */
 	background-size: 100% 100%;
 	background-position: center;
 	background-attachment: fixed;

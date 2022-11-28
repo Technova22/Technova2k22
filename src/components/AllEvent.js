@@ -141,8 +141,8 @@ const Allevents = () => {
       </div>
       <div
         style={{
-          border: "1.5px solid red ",
-          backgroundColor: "red",
+          border: "1.5px solid #3d5a80 ",
+          backgroundColor: "#3d5a80",
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
@@ -156,7 +156,7 @@ const Allevents = () => {
               return (
                 <div className="col-md-4 mx-1cont shadow p-2 rounded mb-2" style={{borderRadius:"5px",padding:"10px"}} key={item.id}>
                   <div className="my-2">
-                    <div className="card ">
+                    <div className="card border-0">
                       <div
                         style={{
                           display: "flex",
@@ -176,7 +176,7 @@ const Allevents = () => {
                       />
                       <div className="card-body">
                        <h5 className="card-title" >{item.eventName}</h5>
-                        <p className="card-text" style={{fontSize:"14px"}}>
+                        <p className="py-3" style={{fontSize:"14px"}}>
                           {item.eventDescription.slice(0, 50)}...
                         </p>
   <Link to={"/EventDetail/"+item.id} className="btn btn-sm btn-dark mt-2">Read More</Link>
@@ -209,8 +209,8 @@ const Allevents = () => {
       </div>
       <div
         style={{
-          border: "1.5px solid red ",
-          backgroundColor: "red",
+          border: "1.5px solid #3d5a80 ",
+          backgroundColor: "#3d5a80",
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
@@ -225,7 +225,7 @@ const Allevents = () => {
               return (
                 <div className="col-md-4  cont shadow " style={{borderRadius:"5px",padding:"10px"}} key={item.id}>
                   <div className="my-3">
-                    <div className="card ">
+                    <div className="card border-0">
                       <div
                         style={{
                           display: "flex",
@@ -245,7 +245,7 @@ const Allevents = () => {
                       />
                       <div className="card-body">
                        <h5 className="card-title" >{item.eventName}</h5>
-                        <p className="card-text">
+                        <p className="py-3">
                           {item.eventDescription.slice(0,100)}...
                         </p>
   <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark mt-2">Read More</Link>
@@ -275,8 +275,8 @@ const Allevents = () => {
       </div>
       <div
         style={{
-          border: "1.5px solid red ",
-          backgroundColor: "red",
+          border: "1.5px solid #3d5a80 ",
+          backgroundColor: "#3d5a80",
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
@@ -292,7 +292,7 @@ const Allevents = () => {
               return (
                 <div className="col-md-4 cont shadow" style={{borderRadius:"5px"}} key={item.id}>
                   <div className="my-3">
-                    <div className="card">
+                    <div className="card border-0">
                       <div
                         style={{
                           display: "flex",
@@ -312,7 +312,7 @@ const Allevents = () => {
                       />
                       <div className="card-body">
                      <h5 className="card-title" >{item.eventName}</h5>
-                        <p className="card-text">
+                        <p className="py-3">
                           {item.eventDescription.slice(0,100)}...
                         </p>
   <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark mt-2">Read More</Link>
@@ -338,8 +338,8 @@ const Allevents = () => {
           color:'black'}}>Pratibimb Society</h2>
       </div>
       <div style={{
-          border: "1.5px solid red ",
-          backgroundColor: "red",
+          border: "1.5px solid #3d5a80 ",
+          backgroundColor: "#3d5a80",
           width: "90%",
           margin: " 0 5px ",
           marginBottom: "40px",
@@ -354,7 +354,7 @@ const Allevents = () => {
               
               <div className="col-md-4 cont shadow" style={{borderRadius:"5px"}} key={item.id}>
 <div className='my-3'>
-  <div className="card" >
+  <div className="card border-0" >
   <div style={{
     display:'flex',
     justifyContent:'flex-end',
@@ -367,7 +367,7 @@ const Allevents = () => {
   <div className="card-body">
     
   <h5 className="card-title">{item.eventName}</h5>
-  <p className="card-text">{item.eventDescription.slice(0,100)}...</p>
+  <p className="py-3">{item.eventDescription.slice(0,100)}...</p>
   <Link to={"/EventDetail/"+item.id}    className="btnallevent btn-sm btn-dark mt-2">Read More</Link>
   
   </div>
