@@ -60,7 +60,7 @@ let count=0;
             {
                 let arr = [team.val().mail_id1, team.val().mail_id2, team.val().mail_id3, team.val().mail_id4];
 
-                let row_content = [[team.val().member1, team.val().mail_id1, team.val().roll_no1],[team.val().member2, team.val().mail_id2, team.val().roll_no2],[team.val().member3, team.val().mail_id3, team.val().roll_no3],[team.val().member4, team.val().mail_id4, team.val().roll_no4]];
+                let row_content = [["1",team.val().member1, team.val().roll_no1,team.val().mobile1],["2",team.val().member2,  team.val().roll_no2,team.val().mobile2],["3",team.val().member3,  team.val().roll_no3,team.val().mobile3],["4",team.val().member4,  team.val().roll_no4,team.val().mobile4]];
 
                 console.log(row_content);
 
@@ -70,6 +70,7 @@ let count=0;
             
                 console.log(`email matched in team: ${team.key} and event ${event.key} `);
                  
+
                 let container = document.getElementById('contain');
                 let card = document.createElement('div');
                 let cardbody = document.createElement('div');
@@ -85,15 +86,30 @@ let count=0;
                 let rhead = document.createElement('tr');
                 
                 let name = document.createElement('th');
+                name.setAttribute('scope','col');
                 name.innerHTML = "Name";
-                let email = document.createElement('th');
-                    email.innerHTML = "Email";
+
+                // let email = document.createElement('th');
+                // email.setAttribute('scope','col');
+                // email.innerHTML = "Email";
+
                 let roll_no = document.createElement('th');
+                roll_no.setAttribute('scope','col');
                 roll_no.innerHTML = "Roll No";
+
+                let serialNo = document.createElement('th');
+                serialNo.setAttribute('scope','col');
+                serialNo.innerHTML = "S.No.";
+
+                let mobile = document.createElement('th');
+                mobile.setAttribute('scope','col');
+                mobile.innerHTML = "Mobile";
                  
+                rhead.appendChild(serialNo);
                 rhead.appendChild(name);
-                rhead.appendChild(email);
+                // rhead.appendChild(email);
                 rhead.appendChild(roll_no);
+                rhead.appendChild(mobile);
                         
                 tb.appendChild(rhead);
                 for(let i = 0; i< 4; i++)
@@ -104,9 +120,10 @@ let count=0;
                         var row = document.createElement("tr");
                         
                         
-                       for(let j = 0; j< 3; j++)
+                       for(let j = 0; j< 4; j++)
                         {
                           let cell = document.createElement('td');
+                          // cell.setAttribute('scope','row');
                           console.log(`cell content : ${row_content[i][j]}`);
                           cell.innerHTML =  row_content[i][j];
                           row.appendChild(cell);
@@ -195,6 +212,7 @@ count++;
           
             <table>
                 <tbody>
+                  
                 <tr>
                         <td>Roll No</td>
                         <td>:</td>

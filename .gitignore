@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-/src/components/Timer.js
+# /src/components/Timer.js
 # /src/components/AllEvent.js
 # testing
 /coverage
