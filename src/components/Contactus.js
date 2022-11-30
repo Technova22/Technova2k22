@@ -16,8 +16,8 @@ const Contactus = () => {
             </div>
             </div>
 
-    <div  className="rowcontact position-absolute start-0 gitsxncardspos">
-        <div  className="col-4 border text-center w-50 py-4 mx-5 bg-light rounded" >
+    <div  className="row position-absolute start-0 gitsxncardspos w-100 mx-auto mb-5">
+        <div  className="col-md-6 col-10 border my-2 text-center py-4 mx-auto bg-light rounded" >
             <i className="bi bi-telephone-fill gitsxn_heading"></i><br/>
             <span className="h3">Talk to us!</span>
             <br/><br/>
@@ -26,7 +26,7 @@ const Contactus = () => {
             
             <a href="tel:987654321" role="button" className="btn btn-outline-secondary btn-lg fs-7">+91-987654321</a>
         </div>
-        <div className="col-4 border text-center py-3 w-50 mx-5 bg-light rounded">
+        <div className="col-md-6 col-10 border my-2 text-center py-4 mx-auto bg-light rounded">
             <i className="bi bi-envelope-fill gitsxn_heading"></i><br/>
             <span className="h3">Through mail!</span>
             <br/><br/>
