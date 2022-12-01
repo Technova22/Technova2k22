@@ -134,7 +134,7 @@ const Profile = () => {
                     cardbody.classList.add('card-bodyprofile');
 
                     card.appendChild(cardbody);
-                    card.classList.add('cardprofile');
+                    card.classList.add('cardprofile','p-2');
 
                     container.appendChild(card);
 
@@ -199,53 +199,34 @@ const Profile = () => {
       {/* <!-- Main --> */}
       <div class="mainprofile col-md-7 col-12 col-md-10 mx-auto my-5" id="contain">
         <h2>{currentName.toUpperCase()}</h2>
-        <div class="cardprofile">
+        <div class="cardprofile py-4">
           <div class="card-bodyprofile">
 
-            <table>
+            <table className='table table-striped table-borderless m-auto text-break w-auto'>
               <tbody>
-
                 <tr>
-                  <span>
-                  <td><b>Roll No</b></td>
-                  <td> : </td>
-                  <td>{currentRoll}</td>
-                  </span>
+                  <th scope='row' className='text-start'>Roll No</th>
+                  <td className='text-start'>{currentRoll}</td>
                 </tr>
                 <tr>
-                  <span>
-                  <td><b>Email</b></td>
-                  <td> : </td>
-                  <td>{currentEmail}</td>
-                  </span>
+                  <th scope='row' className='text-start'>Email</th>
+                  <td className='text-start'>{currentEmail}</td>
                 </tr>
                 <tr>
-                  <span>
-                  <td><b>Phone</b></td>
-                  <td> : </td>
-                  <td>{currphone}</td>
-                  </span>
+                  <th scope='row' className='text-start'>Phone</th>
+                  <td className='text-start'>{currphone}</td>
                 </tr>
                 <tr>
-                  <span>
-                  <td><b>Organisation</b></td>
-                  <td> : </td>
-                  <td>{currorganization}</td>
-                  </span>
+                  <th scope='row' className='text-start'>Organisation</th>
+                  <td className='text-start'>{currorganization}</td>
                 </tr>
                 <tr>
-                  <span>
-                  <td><b>Branch</b></td>
-                  <td> : </td>
-                  <td>{currbranch}</td>
-                  </span>
+                  <th scope='row' className='text-start'>Branch</th>
+                  <td className='text-start'>{currbranch}</td>
                 </tr>
                 <tr>
-                  <span>
-                  <td><b>Semester</b></td>
-                  <td> : </td>
-                  <td>{currsemester}</td>
-                  </span>
+                  <th scope='row' className='text-start'>Semester</th>
+                  <td className='text-start'>{currsemester}</td>
                 </tr>
 
               </tbody>
