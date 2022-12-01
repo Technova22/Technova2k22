@@ -404,8 +404,8 @@ async function onSubmit(e){
     //     </section>
     //   </div>
     <div class="rowteam">
-    <section class="sectionteam">
-      <header  class="headerteam">
+    <section class="sectionteam col-lg-6 col-12">
+      <header  class="headerteam text-center">
         <h3>Register</h3>
         <h4>Please fill your information bellow</h4>
       </header>

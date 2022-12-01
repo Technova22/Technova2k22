@@ -14,8 +14,8 @@
   justify-content: center;
 }
 .sectionteam {
+  min-height: 100vh;
   font-size: 10px;
-    width: 50%;
   background-color: #3D4067;
   background: linear-gradient(#0093F9, #199fff );
   position: relative;
