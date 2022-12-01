@@ -12,6 +12,7 @@ const Navbar1 = () => {
   console.log(location.pathname)
   const refer = useRef(null);
   const referburger = useRef(null);
+  let url = window.location.href;
   window.addEventListener('scroll', fixNav)
   function fixNav() {
     if (window.scrollY > 150) {
@@ -63,9 +64,9 @@ const CustomDropdown = ({ ...props }) => (
           <div class="ms-auto collapse navbar-collapse w-auto" id="navbarSupportedContent">
           <ul className='navbar-nav ms-auto  my-auto p-0'>
             <li className='nav-item'><NavLink to="/"  activeClassName="active"  exact>Home</NavLink></li>
-            <li className='nav-item'><a href="#about" className={location.hash=='#about'?'active':''}>About</a></li>
+            <li className='nav-item'><a href="#about" className={url.includes('/#about')?'active':''}>About</a></li>
             <li className='nav-item'><NavLink to="/AllEvent" activeClassName="active" exact>Events</NavLink></li>
-            <li className='nav-item'><a href="#gallery"  className={location.hash=='#gallery'?'active':''}>Gallery</a>
+            <li className='nav-item'><a href="#gallery"  className={url.includes('/#gallery')?'active':''}>Gallery</a>
             </li>
             <li className='nav-item'><NavLink to="/contact" activeClassName="active" exact>Contact</NavLink></li>
          
