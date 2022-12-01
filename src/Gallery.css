@@ -17,16 +17,15 @@
  .container_gallery {
      display: flex;
      width: 100%;
-     padding: 4% 2%;
+     /* padding: 4% 2%; */
      box-sizing: border-box;
-     height: 80vh;
+     min-height: 80vh;
    }
    
    .box_gallery {
-     flex: 1;
      overflow: hidden;
      transition: 0.5s;
-     margin: 0 2%;
+     /* margin: 0 2%; */
      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
      line-height: 0;
    }
@@ -47,8 +46,13 @@
      line-height: 2.6;
    }
    
+   @media (min-width:992px) {   
+    .box_gallery {
+      flex: 1;
+    }
    .box_gallery:hover {
      flex: 1 1 50%;
+   }
    }
    
    .box_gallery:hover > img {
