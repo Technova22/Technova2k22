@@ -16,23 +16,27 @@ const Contactus = () => {
             </div>
             </div>
 
-    <div  className="row position-absolute start-0 gitsxncardspos w-100 mx-auto mb-5">
-        <div  className="col-md-6 col-10 border my-2 text-center py-4 mx-auto bg-light rounded" >
-            <i className="bi bi-telephone-fill gitsxn_heading"></i><br/>
-            <span className="h3">Talk to us!</span>
+    <div  className="row position-absolute start-0 gitsxncardspos  w-150  mb-5 border-light">
+        <div  className="col-md-6 col-10 border  my-2 text-center py-4  mx-auto bg-light rounded " >
+            <i className="fa-solid fa-phone gitsxn_heading pb-3"></i><br/>
+            <span className="h3"><u>CONTACT US</u></span>
             <br/><br/>
-            <div className="col-8 offset-2">Sample text here, Anything can be added here. Sample text here, Anything can be added here.</div>
+            <div className="col-8 offset-2">For any Query related to Events and participation CONTACT HERE</div>
             <br/><br/>
             
-            <a href="tel:987654321" role="button" className="btn btn-outline-secondary btn-lg fs-7">+91-987654321</a>
+            <a href="tel:+918168404341" role="button" className="btn btn-sm btn-outline-secondary fs-7">
+                +918168404341
+            </a>
         </div>
-        <div className="col-md-6 col-10 border my-2 text-center py-4 mx-auto bg-light rounded">
-            <i className="bi bi-envelope-fill gitsxn_heading"></i><br/>
-            <span className="h3">Through mail!</span>
+        <div className="col-md-6 col-10 col-lg-6 border my-2 text-center py-4 mx-auto bg-light rounded">
+            <i className="fa-solid fa-envelope gitsxn_heading pb-3"></i><br/>
+            <span className="h3"><u>MAIL US</u></span>
             <br/><br/>
-            <div className="col-8 offset-2">Sample text here, Anything can be added here. Sample text here, Anything can be added here.</div>
+            <div className="col-8 offset-2">You can also reach us through Email and give your precious feedback !</div>
             <br/><br/>
-            <a href="mailto:email@example.com?subject='Hello from Abstract!'&body='Just popped in to say hello'" role="button" className="btn btn-outline-secondary btn-lg fs-7">ceo@gmail.com</a>
+            <a href="mailto:email@example.com?subject='Hello from Abstract!'&body='Just popped in to say hello'" role="button" className="btn btn-sm btn-outline-secondary fs-7 btn-responsive">
+                coordinator_technova@dcrustm.org
+            </a>
         </div>
     </div>
         </div>
