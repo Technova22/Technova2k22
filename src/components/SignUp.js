@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "../signup.css";
+import { useMediaQuery } from 'react-responsive'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   getDatabase,
@@ -26,7 +27,22 @@ import { db, auth } from "./misc/firebase";
 import { useStore } from "../store";
 import { useToaster, Message, Modal, Button, Placeholder } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
+import Login from "./Login";
+
+
+
 const SignUp = () => {
+  const [mode, setmode] = useState('login');
+  function toggleMode() {
+      var newMode =( mode === 'login') ? 'signup' : 'login';
+      setmode(newMode)
+  }
+  const isMobile = useMediaQuery({
+    query: '(max-width: 600px)'
+  })
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 600px)'
+  })
   const [InputType1,InputType2,InputType3, SIcon, CIcon, Icon] = Passwordtoggle();
   const toaster = useToaster();
   let history = useHistory();
@@ -56,12 +72,14 @@ const SignUp = () => {
     confirmpassword: "",
   });
   console.log(credentials);
-
+  
   const [logincred, setlogincred] = useState({
     e_mail: "",
     e_password: "",
   });
+  // console.log(logincred);
   const [resetemail, setresetemail] = useState("");
+  // console.log(resetemail);
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -96,18 +114,19 @@ const SignUp = () => {
     }
   }
   const validate_password = (password) => {
-    console.log(password);
+    // console.log(password);
     // Firebase only accepts lengths greater than 6
 
-    var passw =
-      /^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[^a-zA-Z0-9])(?!.*\s).{6,20}$/;
-    // console.log(password.match(passw))
-    if (password.match(passw) != null) {
+    var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    // console.log(password.match(decimal))
+    if (password.match(decimal)) {
+      
       // alert('Correct')
       return true;
+    
     } else {
       alert(
-        "Should containne 6-20 atleast one lowercase letter, one uppercase letter, one numeric digit, and one special character "
+        "Should contain 8-15 atleast one lowercase letter, one uppercase letter, one numeric digit, and one special character "
       );
       return false;
     }
@@ -124,14 +143,16 @@ const SignUp = () => {
       return false;
     }
   }
+  function containsOnlyNumbers(str) {
+    return /^\d+$/.test(str);
+  }
 
   function validate_field(field) {
-    if (field == null) {
+   console.log(field.length)
+    if (field.length == 0) {
       return false;
     }
-    if (field.length <= 0) {
-      return false;
-    }
+
   }
 
   function late() {
@@ -144,7 +165,7 @@ const SignUp = () => {
         var user_data = {
           uid: user.uid,
           rollno: rollno,
-          email: email,
+          email: email.toLowerCase(),
           fullname: fullname,
           mobile: mobile,
           organization: organization,
@@ -152,17 +173,10 @@ const SignUp = () => {
           semester: semester,
           password: password,
           emailverified: false,
-          last_login: Date.now(),
+          last_login: new Date(),
         };
 
-        sendEmailVerification(user).then(() => {
-          toaster.push(
-            <Message type="info" closable>
-              Email link set
-            </Message>
-          );
-          console.log(user);
-        });
+       
         updateProfile(auth.currentUser, {
           displayName: credentials.fullname,
           email: credentials.email,
@@ -182,6 +196,14 @@ const SignUp = () => {
 
         // Push to Firebase Database
         set(child(database_ref, "users/" + rollno), user_data);
+        sendEmailVerification(user).then(() => {
+          toaster.push(
+            <Message type="info" closable>
+              Email link set: Check your Inbox
+            </Message>
+          );
+          // console.log(user);
+        });
 
         // DOne
         toaster.push(
@@ -210,7 +232,8 @@ const SignUp = () => {
       (snapshot) => {
         try {
           if (snapshot.exists()) {
-            console.log("user exist" + snapshot.val());
+            // console.log("user exist" + snapshot.val());
+            console.log("user exist");
 
             throw new Error(`User exists already with ${rollno}`);
           } else {
@@ -218,7 +241,11 @@ const SignUp = () => {
             console.log("user created");
           }
         } catch (err) {
-          alert("user already exists");
+          toaster.push(
+            <Message type="error" closable>
+              User Already Exists !!
+            </Message>
+          );
           console.log(err.message);
         }
       }
@@ -233,23 +260,31 @@ const SignUp = () => {
     // let flag=false
     // await validate_rollno(rollno).then(flag=true).catch(flag=false)
     try {
+      
       if (validate_confirm(password, confirmpassword) == false) {
         throw new Error(`password not same`);
       }
+      if(containsOnlyNumbers(rollno) == false){
+        throw new Error("Roll no should contain numeric values")
+      }
+      if(containsOnlyNumbers(mobile) == false){
+        throw new Error("Mobile No. should contain numeric values")
+      }
       if (validate_password(password) == false) {
-        console.log(password);
+        // console.log(password);
         throw new Error(`termiate`);
         // console.log("hello2")
         // alert('One or More Extra Fields is Outta Line!!');
       }
-      if (validate_field(password) == false) {
-        alert("field have problem");
-        return;
+      if (validate_field(fullname) == false || validate_field(branch) == false || validate_field(semester) == false ||  validate_field(organization) == false) {
+        console.log(validate_field(semester))
+        throw new Error("Any of field is Empty");
+        
       }
 
       // console.log("hello3")
       if (validate_email(email) === false) {
-        alert("Email or Password is Outta Line!!");
+        alert("Email is incorrect !!");
         return;
         // Don't continue running the code
       }
@@ -275,8 +310,8 @@ const SignUp = () => {
         // Declare user variable
 
         var user = auth.currentUser;
-        console.log(user.displayName);
-        console.log(user.email);
+        // console.log(user.displayName);
+        // console.log(user.email);
         // Add this user to Firebase Database
         // var database_ref = db.ref()
         if (user.emailVerified != true) {
@@ -286,21 +321,23 @@ const SignUp = () => {
             </Message>
           );
         } else {
+          // var currenttime = new Date().getHours();
           // Create User data
           var user_data = {
             last_login: Date.now(),
-            emailverified: true,
+            emailverified: true
           };
+          // console.log(user)
 
           // Push to Firebase Database
-          update(child(database_ref, "users/" + rollno), user_data);
+          update(child(database_ref, "users/" + user.photoURL), user_data);
 
           // DOne
           setCurrentName(user.displayName);
           setCurrentEmail(user.email);
           setCurrentRoll(user.photoURL);
-          console.log(currentName);
-          console.log(currentEmail);
+          // console.log(currentName);
+          // console.log(currentEmail);
           history.push("/");
           toaster.push(
             <Message type="success" closable>
@@ -314,7 +351,11 @@ const SignUp = () => {
         var error_code = error.code;
         var error_message = error.message;
 
-        alert(error_message);
+          toaster.push(
+        <Message type="error" closable>
+          {error_message}
+        </Message>
+      );
       });
   }
 
@@ -332,7 +373,11 @@ const SignUp = () => {
         // Password reset email sent!
         console.log("reset email snt");
         handleClose();
-        alert("Reset Email Sent.Check your Inbox");
+        toaster.push(
+          <Message type="success" closable>
+           Reset Email Sent. Check your Inbox or Spam
+          </Message>
+        );
         // ..
       })
       .catch((error) => {
@@ -344,203 +389,228 @@ const SignUp = () => {
 
   return (
     <>
-      <i class="fa-solid fa-eye-slash"></i>
-      <div className="bodybill">
-        <div className="container1 right-panel-active">
-          <div className="container__form container--signup ">
-            <form
-              className="form"
-              id="form1"
-              style={{ overflow: "scroll" }}
-              onSubmit={signupp}
-            >
-              <div style={{ position: "relative", top: "18%" }}>
-                <h2
-                  className="form__title"
-                  style={{
-                    position: "relative",
-                    top: "22%",
-                    marginTop: "220%",
-                  }}
-                >
-                  Sign Up
-                </h2>
-              </div>
+    { isDesktop?
+      // <i class="fa-solid fa-eye-slash"></i>
+    <div className="bodybill">
+      <div className="container1 right-panel-active">
+        <div className="container__form container--signup ">
+          <form
+            className="form"
+            id="form1"
+            style={{ overflow: "scroll" }}
+            onSubmit={signupp}
+          >
+            <div style={{ position: "relative", top: "18%" }}>
+              <h2
+                className="form__title"
+                style={{
+                  position: "relative",
+                  top: "22%",
+                  marginTop: "220%",
+                }}
+              >
+                Sign Up
+              </h2>
+            </div>
 
-              <div className="input-box" style={{ marginTop: "160px" }}>
-                <input
-                  type="number"
-                  id="rollno"
-                  name="rollno"
-                  required
-                  onChange={onChange}
-                />
-                <label htmlFor="rollno">Roll No.</label>
-              </div>
-              <div className="input-box">
-                <input
-                  type="text"
-                  id="fullname"
-                  name="fullname"
-                  required
-                  onChange={onChange}
-                />
-                <label htmlFor="username">Full Name</label>
-              </div>
-              <div className="input-box">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  onChange={onChange}
-                />
-                <label htmlFor="email">Email</label>
-              </div>
-              <div className="input-box">
-                <input
-                  type="number"
-                  id="mobile"
-                  name="mobile"
-                  required
-                  onChange={onChange}
-                />
-                <label htmlFor="mobile">Mobile Number</label>
-              </div>
-              <div className="input-box">
-                <input
-                  type="text"
-                  id="organization"
-                  name="organization"
-                  required
-                  onChange={onChange}
-                />
-                <label htmlFor="organization">Organization Name</label>
-              </div>
-              <div className="input-box">
-                <input
-                  type="text"
-                  id="branch"
-                  name="branch"
-                  required
-                  onChange={onChange}
-                />
-                <label htmlFor="branch">Branch</label>
-              </div>
-              <div className="input-box">
-                <input
-                  type="number"
-                  id="semester"
-                  name="semester"
-                  required
-                  onChange={onChange}
-                />
-                <label htmlFor="semester">Semester</label>
-              </div>
-              <div className="input-box">
-                <input
-                  type={InputType1}
-                  id="password"
-                  name="password"
-                  required
-                  onChange={onChange}
-                />
-                <label name="password" htmlFor="password">
-                  Password
-                </label>
-                <span className="password-toogle-icon">{SIcon}</span>
-              </div>
-              <div className="input-box">
-                <input
-                  type={InputType2}
-                  id="confirmpassword"
-                  name="confirmpassword"
-                  required
-                  onChange={onChange}
-                />
-                <label name="confirmpassword" htmlFor="confirmpassword">
-                  Confirm Password
-                </label>
-                <span className="password-toogle-icon">{CIcon} </span>
-              </div>
-              <button className="btnsign">Sign Up</button>
-            </form>
-          </div>
+            <div className="input-box" style={{ marginTop: "160px" }}>
+              <input
+                type="text"
+                id="rollno"
+                name="rollno"
+                required
+                onChange={onChange}
+              />
+              <label htmlFor="rollno">Roll No.</label>
+            </div>
+            <div className="input-box">
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                required
+                onChange={onChange}
+              />
+              <label htmlFor="username">Full Name</label>
+            </div>
+            <div className="input-box">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                onChange={onChange}
+              />
+              <label htmlFor="email">Email</label>
+            </div>
+            <div className="input-box">
+              <input
+                type="text"
+                id="mobile"
+                name="mobile"
+                required
+                onChange={onChange}
+              />
+              <label htmlFor="mobile">Mobile Number</label>
+            </div>
+            <div className="input-box">
+              <input
+                type="text"
+                id="organization"
+                name="organization"
+                required
+                onChange={onChange}
+              />
+              <label htmlFor="organization">College Name</label>
+            </div>
+            <div className="input-box">
+              <input
+                type="text"
+                id="branch"
+                name="branch"
+                required
+                onChange={onChange}
+              />
+              <label htmlFor="branch">Branch</label>
+            </div>
+            <div className="input-box">
+              <input
+                type="text"
+                id="semester"
+                name="semester"
+                required
+                onChange={onChange}
+              />
+              <label htmlFor="semester">Semester</label>
+            </div>
+            <div className="input-box">
+              <input
+                type={InputType1}
+                id="password"
+                name="password"
+                required
+                onChange={onChange}
+              />
+              <label name="password" htmlFor="password">
+                Password
+              </label>
+              <span className="password-toogle-icon">{SIcon}</span>
+            </div>
+            <div className="input-box">
+              <input
+                type={InputType2}
+                id="confirmpassword"
+                name="confirmpassword"
+                required
+                onChange={onChange}
+              />
+              <label name="confirmpassword" htmlFor="confirmpassword">
+                Confirm Password
+              </label>
+              <span className="password-toogle-icon">{CIcon} </span>
+            </div>
+            <button className="btnsign">Sign Up</button>
+          </form>
+        </div>
 
-          <div className="container__form container--signin">
-            <form className="form" id="form2" onSubmit={signinn}>
-              <h2 className="form__title">Sign In</h2>
-              <div className="input-box">
+        <div className="container__form container--signin">
+          <form className="form" id="form2" onSubmit={signinn}>
+            <h2 className="form__title">Sign In</h2>
+            <div className="input-box">
+              <input
+                type="text"
+                id="emaillogin"
+                name="e_mail"
+                onChange={onChange1}
+                required
+              />
+              <label htmlFor="email">Email</label>
+            </div>
+            <div className="input-box">
+              
                 <input
-                  type="text"
-                  id="emaillogin"
-                  name="e_mail"
+                  type={InputType3}
+                  id="passwordlogin"
+                  name="e_password"
                   onChange={onChange1}
                   required
-                />
-                <label htmlFor="email">Email</label>
-              </div>
-              <div className="input-box">
-                
+                />{" "}
+              
+              <label htmlFor="password">Password</label>
+                <span className="password-toogle-icon">{Icon}</span>
+            </div>
+            <button className="link" onClick={handleOpen}>
+              Forgot your password?
+            </button>
+            <Modal open={open} onClose={handleClose}>
+              <Modal.Header>
+                <Modal.Title>Reset your password</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="input-box" style={{ marginTop: "30px"}}>
                   <input
-                    type={InputType3}
-                    id="passwordlogin"
-                    name="e_password"
-                    onChange={onChange1}
+                    type="text"
+                    id="emaillogin"
+                    name="resetemail"
+                    onChange={(e) => setresetemail(e.target.value)}
                     required
-                  />{" "}
-               
-                <label htmlFor="password">Password</label>
-                  <span className="password-toogle-icon">{Icon}</span>
-              </div>
-              <button className="link" onClick={handleOpen}>
-                Forgot your password?
-              </button>
-              <Modal open={open} onClose={handleClose}>
-                <Modal.Header>
-                  <Modal.Title>Reset your password</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <div className="input-box" style={{ marginTop: "30px" }}>
-                    <input
-                      type="text"
-                      id="emaillogin"
-                      name="resetemail"
-                      onChange={(e) => setresetemail(e.target.value)}
-                      required
-                    />
-                    <label htmlFor="email">Email</label>
-                  </div>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button onClick={resetpassword} appearance="primary">
-                    Ok
-                  </Button>
-                  <Button onClick={handleClose} appearance="subtle">
-                    Cancel
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-              <button className="btnsign">Log In</button>
-            </form>
-          </div>
+                  />
+                  <label htmlFor="email">Email</label>
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button onClick={resetpassword} appearance="primary">
+                  Ok
+                </Button>
+                <Button onClick={handleClose} appearance="subtle">
+                  Cancel
+                </Button>
+              </Modal.Footer>
+            </Modal>
+            <button className="btnsign">Log In</button>
+          </form>
+        </div>
 
-          <div className="container__overlay">
-            <div className="overlay">
-              <div className="overlay__panel overlay--left">
-                <button className="btnsign" id="signIn" onClick={sweeper}>
-                  Sign In
-                </button>
-              </div>
-              <div className="overlay__panel overlay--right">
-                <button className="btnsign" id="signUp" onClick={sweeper1}>
-                  Sign Up
-                </button>
-              </div>
+        <div className="container__overlay">
+          <div className="overlay">
+            <div className="overlay__panel overlay--left">
+              <button className="btnsign" id="signIn" onClick={sweeper}>
+                Sign In
+              </button>
+            </div>
+            <div className="overlay__panel overlay--right">
+              <button className="btnsign" id="signUp" onClick={sweeper1}>
+                Sign Up
+              </button>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    :
+    // <div id="app"></div>
+    <div className={`app app--is-${mode}`}>
+        <Login
+            signupp={signupp}
+            signinn={signinn}
+            onChange={onChange}
+            onChange1={onChange1}
+            mode={mode}
+            toggleMode={toggleMode}
+            resetpassword={resetpassword}
+            open={open}
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            resetemail={resetemail}
+            setresetemail={setresetemail}
+            // onSubmit={
+            //     function() {
+            //         console.log('submit');
+            //     }
+            // }
+        />
+    </div>
+    }
       {/* <span className="password-toogle-icon">{Icon} </span> */}
     </>
   );

@@ -1,11 +1,15 @@
-#heading_gallery{
+/* #heading_gallery{
     margin: 2% auto;
     margin-top: 5%;
     text-align: center;
-    color: black;
+    color: white;
+ 
 
  }
-
+#gallery{
+  background-color: #0c111b;
+  color:white;
+}
  #line_gallery{
    
   width: 100%;
@@ -17,15 +21,17 @@
  .container_gallery {
      display: flex;
      width: 100%;
-     /* padding: 4% 2%; */
+     padding: 4% 2%;
      box-sizing: border-box;
-     min-height: 80vh;
+     
+     height: 80vh;
    }
    
    .box_gallery {
+     flex: 1;
      overflow: hidden;
      transition: 0.5s;
-     /* margin: 0 2%; */
+     margin: 0 2%;
      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
      line-height: 0;
    }
@@ -46,6 +52,69 @@
      line-height: 2.6;
    }
    
+   .box_gallery:hover {
+     flex: 1 1 50%;
+   }
+   
+   .box_gallery:hover > img {
+     width: 100%;
+     height: 100%;
+   } */
+
+   #heading_gallery{
+    margin: 2% auto;
+    margin-top: 5%;
+    text-align: center;
+    color: white;
+ }
+ #line_gallery{
+   
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  margin: auto 5%;
+  align-content: center;
+  height: 1.5vh;
+  background-color: rgb(3, 10, 51);
+ 
+ }
+ 
+ .container_gallery {
+     display: flex;
+     width: 90%;
+     /* padding: 4% 2%; */
+     /* padding: 4% 2%; */
+     box-sizing: border-box;
+     /* height: 80vh; */
+     min-height: 80vh;
+   }
+
+   .box_gallery {
+     /* flex: 1; */
+     overflow: hidden;
+     transition: 0.5s;
+     /* margin: 0 2%; */
+     /* margin: 0 2%; */
+     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+     line-height: 0;
+   }
+   
+   .box_gallery > img {
+     width: 100%;
+     height: calc(100% - 10vh);
+     -o-object-fit: cover;
+        object-fit: cover;
+     transition: 0.5s;
+   }
+   
+   .box_gallery > span {
+     font-size: 3.8vh;
+     display: block;
+     text-align: center;
+     height: 10vh;
+     line-height: 2.6;
+   }
+
    @media (min-width:992px) {   
     .box_gallery {
       flex: 1;
@@ -54,7 +123,7 @@
      flex: 1 1 50%;
    }
    }
-   
+
    .box_gallery:hover > img {
      width: 100%;
      height: 100%;

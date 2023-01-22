@@ -13,18 +13,22 @@ import TeamReg from './components/TeamReg';
 import Profile from './components/Profile';
 // import Test from './components/Test';
 
-// import Timer from './components/Timer';
+import Timer from './components/Timer';
 import Contactus from './components/Contactus';
 import Allevents from './components/AllEvent';
 import Gallery from './components/Gallery';
+import "animate.css/animate.min.css";
+
+
 // import Test from './components/Test';
 
 const App = () => {
   return (
   <>
     <Router>
-      
+     
        <Switch>
+      
         <Route exact path='/AllEvent'>
           <Navbar/>
             <Allevents/>
@@ -32,7 +36,7 @@ const App = () => {
           <Route exact path="/">
           <Navbar/>
             <Home />
-            {/* <Timer/> */}
+            <Timer/>
             <About/>
             <Events/>
             <Gallery/>
@@ -45,11 +49,13 @@ const App = () => {
           <Route exact path='/contact'>
             <Navbar/>
             <Contactus/>
+            {/* <Footer/> */}
           </Route>
           <Route exact path="/profile">
           <Navbar/>
                        <Profile/>
           </Route>
+    
           <Route exact path="/EventDetail/:ide">
           <Navbar/>
           <EventDetail
@@ -61,9 +67,11 @@ const App = () => {
          <TeamReg/>
          {/* <Test/> */}
           </Route>
+         
        </Switch>
-        
+       
        </Router>
+
        </>
   )
 }

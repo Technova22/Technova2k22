@@ -1,7 +1,7 @@
 .bodybill{
 	align-items: center;
 	/* background-color: red; */
-	background: url("../public/images/21-min.jpg");
+	background: url("../public/images/temp.jpg");
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -87,7 +87,7 @@
 
 .overlay {
 	background-color: #008997;
-	background: url("../public/images/21-min.jpg");
+	background: url("../public/images/temp.jpg");
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -233,4 +233,14 @@
 		opacity: 1;
 		z-index: 5;
 	}
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import { useParams, useRouteMatch } from 'react-router-dom'
+import React,{useEffect, useRef, useState} from 'react'
+import { useHistory, useParams, useRouteMatch } from 'react-router-dom'
 import {auth,db} from './misc/firebase'
 import '../TeamReg.css'
 
@@ -14,6 +14,7 @@ import { useToaster,Message } from 'rsuite'
 const TeamReg = () => {
   const {currentName} = useStore((state) => state.currentName);
   // const {ide} = useParams();
+  let history = useHistory();
   const {ide} = useParams();
   const toaster = useToaster();
   const [teamform, setteamform] = useState({
@@ -75,13 +76,6 @@ const addmember = (e) => {
   }
 }
 
-const clearmember = (id) => {
-  document.getElementById('name' + id).value='';
-  document.getElementById('email' + id).value='';
-  document.getElementById('phone' + id).value='';
-  document.getElementById('roll' + id).value='';
-}
-
 const delmember = (e) => {
     e.preventDefault();
     console.log(cnt)
@@ -101,11 +95,30 @@ const delmember = (e) => {
 }
 
 
+const clearmember = (id) => {
+  document.getElementById('name' + id).value='';
+  document.getElementById('email' + id).value='';
+  document.getElementById('phone' + id).value='';
+  document.getElementById('roll' + id).value='';
+}
+let univ1 = "";
+let univ2 = "";
+let univ3 = "";
+let univ4 = "";
+let branch1 = "";
+let branch2 = "";
+let branch3 = "";
+let branch4 = "";
+let sem1 = "";
+let sem2 = "";
+let sem3 = "";
+let sem4 = "";
+
 
 
 async function InsertData(){
 
-
+  
   let dbref = ref(db, 'events/'+ data[ide].eventName + "/" + teamform.teamname);
   // console.log(teamname.value);
   
@@ -130,6 +143,18 @@ async function InsertData(){
       roll_no2: teamform.rollnumber2,
       roll_no3: teamform.rollnumber3,
       roll_no4: teamform.rollnumber4,
+      univ1: univ1,
+      univ2: univ2,
+      univ3: univ3,
+      univ4: univ4,
+      branch1: branch1,
+      branch2: branch2,
+      branch3: branch3,
+      branch4: branch4,
+      sem1: sem1,
+      sem2: sem2,
+      sem3: sem3,
+      sem4: sem4
       });
   
       let id_array = [teamform.email1, teamform.email2, teamform.email3, teamform.email4];
@@ -149,7 +174,7 @@ async function InsertData(){
              let  newRef = push(dbRef);
               
               set(newRef , element); 
-              console.log(newRef.key.value);
+              // console.log(newRef.key.value);
             }
   
           });
@@ -159,6 +184,12 @@ async function InsertData(){
         
       console.log(result);
       console.log("successfully uploaded data");
+      toaster.push(
+        <Message type="success" closable>
+        successfully registered</Message>
+      );
+
+      history.push('/Profile')
     }catch(err)
     {
       console.log(err);
@@ -193,7 +224,7 @@ async function onSubmit(e){
     await get(child(db_ref, teamform.teamname)).then((snapshot) =>{
   
      try{
-      console.log(snapshot);
+      // console.log(snapshot);
       if(snapshot.exists()){
         throw new Error('Team already exists');
       }
@@ -211,7 +242,7 @@ async function onSubmit(e){
     {
     await get(child(db_ref, 'allMembers')).then((snapshot) =>{
          
-        console.log(snapshot);
+        // console.log(snapshot);
       try{
         snapshot.forEach((childSnapshot) => {
           // let childKey = childSnapshot.key;
@@ -251,30 +282,46 @@ async function onSubmit(e){
     let i = 0;
  
     await get(ref(db, 'users')).then((snapshot)=>{
-      console.log(snapshot);
+      // console.log(snapshot);
         
       try{
         snapshot.forEach((childSnapshot)=>{
                 
           // console.log(childSnapshot.val());
          if(childSnapshot.val().emailverified == true){
-          if( teamform.email1 == childSnapshot.val().email )
+          if( teamform.email1 == childSnapshot.val().email && teamform.rollnumber1 == childSnapshot.val().rollno )
           {
+            univ1 = childSnapshot.val().organization;
+            sem1 = childSnapshot.val().semester;
+            branch1 = childSnapshot.val().branch;
+
             console.log('email1 match' + i);
             arr[0] = 1;
           }
-          else if(teamform.email2 == childSnapshot.val().email)
+          else if(teamform.email2 == childSnapshot.val().email && teamform.rollnumber2 == childSnapshot.val().rollno)
           {
+            univ2 = childSnapshot.val().organization;
+            sem2 = childSnapshot.val().semester;
+            branch2 = childSnapshot.val().branch;
+
             console.log('email2 match' + i);
             arr[1] = 1;
           }
-          else if(teamform.email3 == childSnapshot.val().email )
+          else if(teamform.email3 == childSnapshot.val().email && teamform.rollnumber3 == childSnapshot.val().rollno )
           {
+            univ3 = childSnapshot.val().organization;
+            sem3 = childSnapshot.val().semester;
+            branch3 = childSnapshot.val().branch;
+
             console.log('email3 match' + i);
             arr[2] = 1;
           }
-          else if(teamform.email4 == childSnapshot.val().email )
+          else if(teamform.email4 == childSnapshot.val().email && teamform.rollnumber4 == childSnapshot.val().rollno )
           {
+            univ4 = childSnapshot.val().organization;
+            sem4 = childSnapshot.val().semester;
+            branch4 = childSnapshot.val().branch;
+
             console.log('email4 match' + i);
             arr[3] = 1;
           }
@@ -294,19 +341,19 @@ async function onSubmit(e){
 
         if(arr[0] == 0)
         {
-          throw new Error(`${teamform.email1} is not registered or verified`);
+          throw new Error(`Either ${teamform.email1} is not registered or verified or its rollno is incorrect`);
         }
         else if(arr[1] == 0) 
         {
-          throw new Error(`${teamform.email2} is not registered or verified`);
+          throw new Error(`Either ${teamform.email2} is not registered or verified or its rollno is incorrect`);
         }
         else if(arr[2] == 0) 
         {
-          throw new Error(`${teamform.email3} is not registered or verified`);
+          throw new Error(`Either ${teamform.email3} is not registered or verified or its rollno is incorrect`);
         }
         else if(arr[3] == 0) 
         {
-          throw new Error(`${teamform.email4} is not registered or verified`);
+          throw new Error(`Either ${teamform.email4} is not registered or verified or its rollno is incorrect`);
         }
         
 
@@ -343,22 +390,62 @@ async function onSubmit(e){
   }
   
   } 
+  const refer=useRef(null);
+  useEffect(() => {
+   refer.current.click();
+  }, []);
   return (
-    <div class="rowteam">
-    <section class="sectionteam col-lg-6 col-12">
-      <header  class="headerteam text-center">
-        <h3>Register</h3>
-        <h4>Please fill your information bellow</h4>
+   <>
+   <button type="button" class="btn btn-primary" ref={refer} data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">NOTE !</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <ul>
+        {/* <li></li> */}
+        <li>All team members must be logged in once into their account to register the team.</li>
+        <br></br>
+        <li>All team members must be registered at once by team Leader only</li>
+        <br></br>
+        <li>Member 1 details will correspond to Team Leader ,who registers the team.</li>
+        <br></br>
+        <li>All the fields of a member are required ,otherwise the Team would be disqualified.</li>
+        {/* <li></li> */}
+      </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        {/* <button type="button" class="btn btn-primary">OK</button> */}
+      </div>
+    </div>
+  </div>
+</div>
+    <div class={`${ide=="19"?"d-none":""} rowteam`}>
+    <section class={`sectionteam col-lg-6 col-12 ${ide=="19"?"d-none":""} `}>
+      <header  class="headerteam ">
+        <h3 style={{color:'black'}}>Register Your Team</h3>
+        <br></br>
+        <li style={{fontSize:'15px',listStylePosition:'outside',margin:'1em',color:'black'}}>Member 1 should be Leader of Team and should fill details of Other members .</li>
+        <li style={{fontSize:'15px',listStylePosition:'outside',margin:'1em',color:'black'}}>Members must have SignedUp on website.</li>
       </header>
       <main  class="mainteam">
         <form action="" id="TeamForm" >
-  
+           
             <div class="form-item box-itemteam" style={{marginBottom:'30px'}}>
-              <input id="teamname" type="text" name="teamname" placeholder="Team Name"  onChange={getData} data-required/>
+              <input id="teamname" type="text" name="teamname" placeholder={data[ide].member==1?'User Name': 'Team Name'}  onChange={getData} data-required/>
               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
             </div>
+           
             <div class ="" id='1'>
-            <span className="w-auto fs-5 text-dark fw-bold">Member 1</span>
+            <span className="w-auto fs-5 text-dark fw-bold">Member 1 (Leader Details)</span>
             <div className='row'>
             <div class="form-item box-itemteam">
               <input id ="name1" type="text" name="name1" placeholder="1st Member" onChange={getData} data-required/>
@@ -368,13 +455,13 @@ async function onSubmit(e){
             <div class="form-item box-itemteam">
               <input id="email1" type="email" name="email1" placeholder="Email"  data-email onChange={getData} data-required/>
               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
             </div>
             </div>
             <div className='row'>
             <div class="form-item box-itemteam">
               <input id ="phone1" type="number" name="phone1" placeholder="Phone no." onChange={getData} data-required/>
               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
             </div>
             <div class="form-item box-itemteam">
               <input id="roll1" type="number" name="rollnumber1" placeholder="Roll Number"  data-email onChange={getData} data-required/>
@@ -388,18 +475,18 @@ async function onSubmit(e){
             <div class="form-item box-itemteam">
               <input  id ="name2" type="text" name="name2" placeholder="2nd Member"  onChange={getData} data-required/>
               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
+              {/* <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small> */}
             </div>
             <div class="form-item box-itemteam">
               <input id="email2" type="email" name="email2" placeholder="Email" data-email onChange={getData} data-required/>
               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
+              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
             </div>
             </div>
             <div className='row'>
             <div class="form-item box-itemteam">
               <input id ="phone2" type="number" name="phone2" placeholder="Phone no." onChange={getData} data-required/>
               <small class="errorReq"><i class="fa fa-asterisk" aria-hidden="true"></i> required field</small>
-              <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small>
             </div>
             <div class="form-item box-itemteam">
               <input id="roll2" type="number" name="rollnumber2" placeholder="Roll Number"  data-email onChange={getData} data-required/>
@@ -479,7 +566,7 @@ async function onSubmit(e){
       <i class="waveteam"></i>
     </section>
   </div>
-    
+  </>
   )
 }
 

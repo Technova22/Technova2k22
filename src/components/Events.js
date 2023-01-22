@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
 // import { useStore } from '../store'
-import { featured } from '../Data'
+import { featured } from '../DataSub.js'
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 const Events = () => {
+  // console.log(featured)
   // const history = useHistory();
   // const currentName = useStore((state) => state.currentName);
   return (
@@ -17,9 +19,9 @@ const Events = () => {
             
 <div class="page-content">
 
-   { featured
-   .map((item)=>{
+   { featured.map((item)=>{
     return (
+      // <AnimationOnScroll animateIn="animate__fadeInRight">
       <div class="card1">
       <div class="content" >
         <h2 class="heade" style={{color:"white"}}>{item.eventName}</h2>
@@ -29,6 +31,7 @@ const Events = () => {
          
       </div>
       </div>
+      // </AnimationOnScroll>
     )
    })}
    
@@ -36,7 +39,7 @@ const Events = () => {
  
 
 
-        <div class="viewall" style={{marginTop:'3%'}}>
+        <div class="viewall">
           <Link to="/AllEvent" class="btn10" ><span>View All</span>
           
             <i class="fas fa-arrow-right" style={{

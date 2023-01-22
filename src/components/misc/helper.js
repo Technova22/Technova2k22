@@ -56,7 +56,7 @@ export async function InsertData(idx){
 
 
 let dbref = ref(db, 'events/'+ eventData[idx].eventName + "/" + teamname.value);
-console.log(teamname.value);
+// console.log(teamname.value);
 
 // let dbrefids = ref(db, 'events/' + eventData[idx].eventName + "/allMembers/");
 
@@ -86,14 +86,14 @@ try{
            let  newRef = push(dbRef);
             
             set(newRef , element); 
-            console.log(newRef.key.value);
+            // console.log(newRef.key.value);
 
         });
 
 
       // console.log(child(dbrefids, email1.value));
       
-    console.log(result);
+    // console.log(result);
     console.log("successfully uploaded data");
   }catch(err)
   {

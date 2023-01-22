@@ -10,39 +10,52 @@ const Footer = () => {
         <div class="row">
           <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-5">
             <div class="footer_section">
-              <h4>Links</h4>
+              <h4 >Student Coordinator</h4>
               <ul className='ulfooter'>
-                <li><Link to="#carouselExampleIndicators">Home</Link></li>
-                <li><Link to="#">Docs</Link></li>
-                <li><Link to="#">Examples</Link></li>
-                <li><Link to="#">Icons</Link></li>
-                <li><Link to="#">Themes</Link></li>
-                <li><Link to="#">Blog</Link></li>
-                <li><Link to="#">Swag Store</Link></li>
+                {/* <li><Link to="#carouselExampleIndicators">Home</Link></li> */}
+                <li><Link to="#carouselExampleIndicators">Harsh Tageja (ECE)</Link></li>
+                <span style={{color:'whitesmoke'}}>8168404341</span>
+                
+                
+              
+              </ul>
+              
+            </div>
+            <div class="footer_section">
+            <h4 style={{fontSize:'17px'}}>Student Co-Coordinators</h4>
+              <ul className='ulfooter'>
+                {/* <li><Link to="#carouselExampleIndicators">Home</Link></li> */}
+      
+                <li><Link to="#">Nishchay Gupta (CSE)</Link></li>
+                <span style={{color:'whitesmoke'}}>9588169118</span>
+                <li><Link to="#">Ritisha Jindal (ECE)</Link></li>
+                <span style={{color:'whitesmoke'}}>9896679160</span>
+              
               </ul>
             </div>
           </div>
           <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-5">
             <div class="footer_section">
-              <h4>Guides</h4>
+              <h4>LINKS</h4>
               <ul className='ulfooter'>
-                <li><Link to="#">Getting started</Link></li>
-                <li><Link to="#">Starter template</Link></li>
-                <li><Link to="#">Webpack</Link></li>
-                <li><Link to="#">Parcel</Link></li>
-                <li><Link to="#">Vite</Link></li>
+                <li><a href="https://www.dcrustm.ac.in/" target='_blank'>www.dcrustm.ac.in</a></li>
+                <li><a href="/images/brochure.pdf" target='_blank'>Brochure</a></li>
+                {/* <li><a href="#"></a></li>
+                <li><a href="#"></a></li> */}
+                {/* <li><a href="#">Vite</a></li> */}
               </ul>
             </div>
           </div>
           <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-5">
             <div class="footer_section">
-              <h4>Projects</h4>
+              <h4>Developer Team</h4>
+              <br></br>
               <ul className='ulfooter'>
-                <li><Link to="#">Bootstrap 5</Link></li>
-                <li><Link to="#">Bootstrap 4</Link></li>
-                <li><Link to="#">Icons</Link></li>
-                <li><Link to="#">RFS</Link></li>
-                <li><Link to="#">npm starter</Link></li>
+                <li><a href="https://www.linkedin.com/in/ankit-bhujeja/" target='_blank'><i class="fab fa-linkedin" style={{marginRight:'2%'}}></i> Ankit Bhujeja</a></li>
+                <li><a href="https://www.linkedin.com/in/kunal-aggarwal-b37a871b1" target='_blank'><i class="fab fa-linkedin" style={{marginRight:'2%'}}></i> Kunal Aggarwal</a></li>
+                <li><a href="https://www.linkedin.com/in/manish-jaiswal-6a260a1b4/" target='_blank'><i class="fab fa-linkedin" style={{marginRight:'2%'}}></i> Manish Jaiswal</a></li>
+                <li><a href="https://www.linkedin.com/in/abhinavaa01" target='_blank'><i class="fab fa-linkedin" style={{marginRight:'2%'}}></i> Abhinav Agrawal</a></li>
+                {/* <li><Link to="#">npm starter</Link></li> */}
               </ul>
             </div>
           </div>
@@ -53,32 +66,24 @@ const Footer = () => {
               >
                 <h4>Contact Us</h4>
                 <div class="search">
-                  <form action="#" class="subscribe">
-                    <input
-                      type="email"
-                      class="contact_input"
-                      placeholder="E-mail address"
-                    />
-                    <button type="submit" class="submit_button">
-                      <i class="fa fa-paper-plane"></i>
-                    </button>
-                  </form>
+                  <h3 style={{color:'whitesmoke',fontSize:'15px'}}>coordinator_technova@dcrustm.org</h3>
                 </div>
               </div>
               <div class="col-sm-12 col-md-6 col-lg-12 social_media">
                 <h4>Follow Up</h4>
+                <br></br>
                 <ul className='ulfooter'>
                   <li>
-                    <Link to=""><i class="fab fa-facebook-f"></i></Link>
+                    <a href="https://www.instagram.com/dcrust.campus.squares/" target='_blank'><i class="fab fa-instagram"></i></a>
                   </li>
                   <li>
-                    <Link to=""><i class="fab fa-twitter"></i></Link>
+                    <a href="https://twitter.com/murthaldcrust?lang=en" target='_blank'><i class="fab fa-twitter"></i></a>
                   </li>
                   <li>
-                    <Link to=""><i class="fab fa-google-plus-g"></i></Link>
+                    <a href="https://www.linkedin.com/company/dcrustmurthal/" target='_blank'><i class="fab fa-linkedin"></i></a>
                   </li>
                   <li>
-                    <Link to=""><i class="fab fa-instagram"></i></Link>
+                    <a href="https://www.facebook.com/officialdcrustm/" target='_blank'><i class="fab fa-facebook-f"></i></a>
                   </li>
                 </ul>
               </div>

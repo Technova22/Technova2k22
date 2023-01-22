@@ -1,5 +1,5 @@
 #back{
-    background-color: #2d3748;
+  background: linear-gradient(105deg, #000, rgb(9, 20, 82));
     padding: 3% 0;
   }
   .flipclock {
@@ -113,6 +113,8 @@
   
     .leaf {
       margin: 0 0.6666666667vw;
+      /* width: 30%;
+      height: 1%; */
     }
   
     .leaf::after {

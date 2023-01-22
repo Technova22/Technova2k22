@@ -1,4 +1,5 @@
 import React,{useEffect} from 'react'
+import { count } from 'rsuite/esm/utils/ReactChildren';
 import "../timer.css"
 
 const Timer = () => {
@@ -13,8 +14,10 @@ const Timer = () => {
      
         var _this = this;
         var updateTimeout;
-       let eventDate = "12/15/2022";
-        const countDown = new Date(eventDate).getTime();
+       let eventDate = "12/12/2022";
+        let countDown = new Date(eventDate);
+        countDown.setHours(countDown.getHours() + 17);
+        const count2 = countDown.getTime();
       //   birthday = dayMonth + yyyy;
         _this.el = el;
         _this.config = Object.assign({
@@ -43,7 +46,7 @@ const Timer = () => {
         addObserver();
       //  }
         function start() {
-          _this.current = getTimeUntil(countDown, new Date().getTime());
+          _this.current = getTimeUntil(count2, new Date().getTime());
           updateView();
           clearTimeout(updateTimeout);
           updateTimeout = setTimeout(start, 500);
@@ -227,7 +230,7 @@ const Timer = () => {
   return (
     <>
     <section id="back">
-    <h2 style={{color:'#fff', textAlign: 'center'}}>BEGINS IN --</h2>
+    <h3 style={{color:'#fff', textAlign: 'center'}}>REGISTRATION ENDS IN --</h3>
     <div class="flipclock" id="flipclock-1" style={{color: '#000'}}></div>
     </section>
     </>

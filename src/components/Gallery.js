@@ -10,58 +10,41 @@ const Gallery = () => {
     <hr className='invisible' />
      <div class="container_gallery row mx-auto">
   <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/_DSC0006.webp"/>
-    <span>CSS</span>
+    <img className='rounded-5' src="images/webp/12.jpg"/>
+    {/* <span>CSS</span> */}
   </div>
   <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/DSC_2093.webp"/>
-    <span>Image</span>
+    <img className='rounded-5' src="images/webp/9.jpg"/>
+    {/* <span>Image</span> */}
   </div>
   <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/_DSC0018.webp"/>
-    <span>Hover</span>
+    <img className='rounded-5' src="images/webp/1.jpg"/>
+    {/* <span>Hover</span> */}
   </div>
   <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/_DSC0036.webp"/>
-    <span>Effect</span>
+    <img className='rounded-5' src="images/webp/2.jpg"/>
+    {/* <span>Effect</span> */}
   </div>
 </div>
-     <div class="container_gallery row">
+     <div class="container_gallery row mx-auto">
   <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/_DSC0006.webp"/>
-    <span>CSS</span>
+    <img className='rounded-5' src="images/webp/3.jpg"/>
+    {/* <span>CSS</span> */}
   </div>
   <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/DSC_2093.webp"/>
-    <span>Image</span>
+    <img className='rounded-5' src="images/webp/13.jpg"/>
+    {/* <span>Image</span> */}
   </div>
   <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/_DSC0018.webp"/>
-    <span>Hover</span>
+    <img className='rounded-5' src="images/webp/8.jpg"/>
+    {/* <span>Hover</span> */}
   </div>
   <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/_DSC0036.webp"/>
-    <span>Effect</span>
-  </div>
-</div>
-     <div class="container_gallery row">
-  <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/_DSC0006.webp"/>
-    <span>CSS</span>
-  </div>
-  <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/DSC_2093.webp"/>
-    <span>Image</span>
-  </div>
-  <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/_DSC0018.webp"/>
-    <span>Hover</span>
-  </div>
-  <div class="box_gallery rounded-5 col-12 col-md-6 col-lg-4 mx-auto py-3">
-    <img className='rounded-5' src="images/webp/_DSC0036.webp"/>
-    <span>Effect</span>
+    <img className='rounded-5' src="images/webp/5.jpg"/>
+    {/* <span>Effect</span> */}
   </div>
 </div>
+   
 </section>
     </>
   )

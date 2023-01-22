@@ -1,13 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,700,800,900&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-/* *{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'Poppins',sans-serif;
-	
-} */
+
 .body45{
     
 	color: #222222;
@@ -15,15 +9,10 @@
   	font-family: 'Open Sans', sans-serif;
 	padding-bottom: 50px;
     top:0;
+
     
 }
-/* .container {
-	margin: 0 auto;
-	max-width: 1200px;
-    flex-direction: row;
-} */
 
-/*  */
 
 .innercontainer{
   
@@ -44,7 +33,7 @@
     position: relative;
     background-color: #ffffff;
     width: 100%;
-    height: 450px;
+    height: 100%;
     margin: auto;
     box-shadow: 1px 1px 10px 5px #dddddd;
 
@@ -67,11 +56,14 @@
  
   .description45{
       margin: 5%;
+      width: 65vw;
+      /* height: ; */
   }
   .description45  #desgh{
     font-weight: bold;
    
   }
+ 
 
 .description45 > p{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -140,5 +132,9 @@
       margin: 5% 5%;
       color: #3f0f64;
   }
-  
+  @media only screen and (max-width: 700px) {
+   .about45{
+    display: block;
+   }
+  }
 

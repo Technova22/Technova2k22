@@ -27,7 +27,7 @@ li a{
 .footer {
     background: linear-gradient(105deg, #000, rgb(9, 20, 82));
      padding-top: 30px;
-     margin-top: 30px;
+     /* margin-top: 30px; */
 }
 
 .footer_section h4,
@@ -63,7 +63,7 @@ li a{
     transition: all .3s ease 0s;
     line-height: 35px;
     font-size: 15px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 .footer_section .ulfooter li a:hover {
