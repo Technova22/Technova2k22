@@ -1,33 +1,31 @@
-import {auth,db} from './firebase'
+import { auth, db } from "./firebase";
 
-const eventData  = [{
+const eventData = [
+  {
     id: "0",
-    eventName: "Arduino"
+    eventName: "Arduino",
   },
   {
-   id: "1",
-   eventName: "WebDev"
+    id: "1",
+    eventName: "WebDev",
   },
   {
     id: "2",
-   eventName: "RoboRace"
+    eventName: "RoboRace",
   },
   {
     id: "3",
-   eventName: "Pubg"
+    eventName: "Pubg",
   },
   {
     id: "4",
-   eventName: "CodeKing"
+    eventName: "CodeKing",
   },
   {
     id: "5",
-   eventName: "GuessQuery"
+    eventName: "GuessQuery",
   },
-
-]
- 
-
+];
 
 //...........................References......................................//
 
@@ -47,164 +45,134 @@ const eventData  = [{
 
 let id = 0;
 
-
 //...........................Insert Data Functions..............................//
- 
 
+export async function InsertData(idx) {
+  let dbref = ref(
+    db,
+    "events/" + eventData[idx].eventName + "/" + teamname.value,
+  );
+  // console.log(teamname.value);
 
-export async function InsertData(idx){
+  // let dbrefids = ref(db, 'events/' + eventData[idx].eventName + "/allMembers/");
 
-
-let dbref = ref(db, 'events/'+ eventData[idx].eventName + "/" + teamname.value);
-// console.log(teamname.value);
-
-// let dbrefids = ref(db, 'events/' + eventData[idx].eventName + "/allMembers/");
-
-try{
-
+  try {
     const result = await set(dbref, {
-    member1: name1.value,
-    mail_id1: email1.value,
-    member2: name2.value,
-    mail_id2: email2.value,
-    member3: name3.value,
-    mail_id3: email3.value,
-    member4: name4.value,
-    mail_id4: email4.value
+      member1: name1.value,
+      mail_id1: email1.value,
+      member2: name2.value,
+      mail_id2: email2.value,
+      member3: name3.value,
+      mail_id3: email3.value,
+      member4: name4.value,
+      mail_id4: email4.value,
     });
 
     let id_array = [email1.value, email2.value, email3.value, email4.value];
-      //   id_array.forEach((element)=> { 
-      //     set(dbrefids(child(element)), {
-           
-      //       team: teamname.value
+    //   id_array.forEach((element)=> {
+    //     set(dbrefids(child(element)), {
 
-      //  })});
-      const dbRef = ref(db, 'events/' + eventData[idx].eventName + "/allMembers/");
+    //       team: teamname.value
 
-        id_array.forEach((element)=>{
-           let  newRef = push(dbRef);
-            
-            set(newRef , element); 
-            // console.log(newRef.key.value);
+    //  })});
+    const dbRef = ref(
+      db,
+      "events/" + eventData[idx].eventName + "/allMembers/",
+    );
 
-        });
+    id_array.forEach((element) => {
+      let newRef = push(dbRef);
 
+      set(newRef, element);
+      // console.log(newRef.key.value);
+    });
 
-      // console.log(child(dbrefids, email1.value));
-      
+    // console.log(child(dbrefids, email1.value));
+
     // console.log(result);
     console.log("successfully uploaded data");
-  }catch(err)
-  {
+  } catch (err) {
     console.log(err);
   }
 }
 
 //....................................Validations.............................//
 
-const popup = (err)=>{
- alert(err.message);
-}
+const popup = (err) => {
+  alert(err.message);
+};
 
-export async function onSubmit(e){
+export async function onSubmit(e) {
+  e.preventDefault();
 
-e.preventDefault();
+  let check = true;
+  let validMail = true;
 
-let check = true;
-let validMail = true;
+  let db_ref = ref(db, "events/" + eventData[idx].eventName);
 
-let db_ref = ref(db, 'events/' + eventData[idx].eventName);
-
-
-  await get(child(db_ref, teamname.value)).then((snapshot) =>{
-
-   try{
-
-    if(snapshot.exists()){
-      throw new Error('Team already exists');
+  await get(child(db_ref, teamname.value)).then((snapshot) => {
+    try {
+      if (snapshot.exists()) {
+        throw new Error("Team already exists");
+      }
+    } catch (err) {
+      console.log("Error: " + err);
+      check = false;
+      popup(err);
     }
-  }catch(err){
-    console.log('Error: '+ err);
-     check = false;
-     popup(err);
-  }
+  });
 
-    });
-
-
-    // onValue(dbRef, (snapshot) => {
-  if(check)
-  {
-  await get(child(db_ref, 'allMembers')).then((snapshot) =>{
-       
+  // onValue(dbRef, (snapshot) => {
+  if (check) {
+    await get(child(db_ref, "allMembers")).then((snapshot) => {
       console.log(snapshot);
-    try{
-      snapshot.forEach((childSnapshot) => {
-        // let childKey = childSnapshot.key;
-        let childData = childSnapshot.val();
+      try {
+        snapshot.forEach((childSnapshot) => {
+          // let childKey = childSnapshot.key;
+          let childData = childSnapshot.val();
 
-        if(childData  == email1.value) 
-        {
-          throw Error(`${email1.value} is already registered`);
-        }
-        if(childData  == email2.value) 
-        {
-          throw new Error(`${email2.value} is already registered`);
-        }
-        if(childData  == email3.value) 
-        {
-          throw new Error(`${email3.value} is already registered`);
-        }
-        if(childData  == email4.value) 
-        {
-          throw new Error(`${email4.value} is already registered`);
-        }
-       
-      });
-
-   
-    }
-    catch(err){
-       console.log(err);
-       check = false;
-       popup(err);
-    }
-    
+          if (childData == email1.value) {
+            throw Error(`${email1.value} is already registered`);
+          }
+          if (childData == email2.value) {
+            throw new Error(`${email2.value} is already registered`);
+          }
+          if (childData == email3.value) {
+            throw new Error(`${email3.value} is already registered`);
+          }
+          if (childData == email4.value) {
+            throw new Error(`${email4.value} is already registered`);
+          }
+        });
+      } catch (err) {
+        console.log(err);
+        check = false;
+        popup(err);
+      }
     });
-
   }
 
+  //   signInWithEmailAndPassword(auth, email1)
+  //  .then((userCredential) => {
+  //   // Signed in
+  //   const user = userCredential.user;
+  //   // ...
+  //   })
+  //  .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   validMail = false;
+  //   console.log(errorMessage);
+  //  });
 
-//   signInWithEmailAndPassword(auth, email1)
-//  .then((userCredential) => {
-//   // Signed in 
-//   const user = userCredential.user;
-//   // ...
-//   })
-//  .catch((error) => {
-//   const errorCode = error.code;
-//   const errorMessage = error.message;
-//   validMail = false;
-//   console.log(errorMessage);
-//  });
-
-
-
-  
-  if(check)
-  InsertData();
-  else
-  {
+  if (check) InsertData();
+  else {
     console.log("Upload Unsuccessful");
-    alert("Registration Unsuccessful, Please TRY AGAIN! with valid credentials")
-    
+    alert(
+      "Registration Unsuccessful, Please TRY AGAIN! with valid credentials",
+    );
   }
-    
-
-} 
-
-
+}
 
 //.................................Event Calls..............................//
 

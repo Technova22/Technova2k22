@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDatabase} from "firebase/database";
+import { getDatabase } from "firebase/database";
 
 import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -16,10 +16,10 @@ const firebaseConfig = {
   storageBucket: "technova22-f21f2.appspot.com",
   messagingSenderId: "499347388002",
   appId: "1:499347388002:web:bf50994f21a1000585c33b",
-  measurementId: "G-KV5PJT08MG"
+  measurementId: "G-KV5PJT08MG",
 };
 
 // Initialize Firebase
- const app = initializeApp(firebaseConfig);
- export const auth = getAuth(app);
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 export const db = getDatabase();

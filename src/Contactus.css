@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Freehand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Freehand&display=swap");
 @import url("https://fonts.googleapis.com/css?family=PT+Sans:400,700");
 
 .btn-responsive {
@@ -6,7 +6,6 @@
   word-wrap: break-word;
 }
 .bodycontact {
-   
   font-family: "PT Sans", sans-serif;
   font-size: 16px;
   line-height: 1.428571429;
@@ -26,18 +25,16 @@
 }
 
 .gitsxn {
- 
-background-image: url('../public/images/contact.jpg');
-/* background: white; */
-  font-family: 'Hind', sans-serif;
+  background-image: url("../public/images/contact.jpg");
+  /* background: white; */
+  font-family: "Hind", sans-serif;
   /* background: white; */
 }
 .gitsxn_heading {
-  font-family: 'Dancing Script', cursive;
+  font-family: "Dancing Script", cursive;
   font-weight: bold;
   font-size: 3rem;
   font-weight: 1000;
-
 }
 .gitsxncardspos {
   top: 65%;

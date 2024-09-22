@@ -1,29 +1,59 @@
-import React from 'react'
-import { Input } from './misc/Input'
+import React from "react";
+import { Input } from "./misc/Input";
 import { useToaster, Message, Modal, Button, Placeholder } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
-const LoginForm = ({mode,signupp,signinn,onChange,onChange1,Passwordtoggle,resetpassword,handleOpen,handleClose,
-  resetemail,setresetemail,open}) => {
-    const [InputType1,InputType2,InputType3, SIcon, CIcon, Icon] = Passwordtoggle();
-    
+const LoginForm = ({
+  mode,
+  signupp,
+  signinn,
+  onChange,
+  onChange1,
+  Passwordtoggle,
+  resetpassword,
+  handleOpen,
+  handleClose,
+  resetemail,
+  setresetemail,
+  open,
+}) => {
+  const [InputType1, InputType2, InputType3, SIcon, CIcon, Icon] =
+    Passwordtoggle();
+
   return (
     <>
-     <form >
-            <div className="form-block__input-wrapper">
-                    <div className="form-group form-group--login">
-                        <Input type="text" id="emaillogin" fname="e_mail" label="Email" disabled={mode === 'signup'}onChange2={onChange1}/>
-                        {/* <div> */}
-                        <div style={{display:'flex',justifyContent:'center'}}>
-                        <Input type={InputType3} id="passwordlogin" fname="e_password" label="Password" disabled={mode === 'signup'} onChange2={onChange1}/>
-                        {mode==='login' &&
-                        <div style={{alignItems:'center',marginTop:'20px'}}>{Icon}</div>}
-                        </div>
-                        <Modal open={open} onClose={handleClose}>
+      <form>
+        <div className="form-block__input-wrapper">
+          <div className="form-group form-group--login">
+            <Input
+              type="text"
+              id="emaillogin"
+              fname="e_mail"
+              label="Email"
+              disabled={mode === "signup"}
+              onChange2={onChange1}
+            />
+            {/* <div> */}
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Input
+                type={InputType3}
+                id="passwordlogin"
+                fname="e_password"
+                label="Password"
+                disabled={mode === "signup"}
+                onChange2={onChange1}
+              />
+              {mode === "login" && (
+                <div style={{ alignItems: "center", marginTop: "20px" }}>
+                  {Icon}
+                </div>
+              )}
+            </div>
+            <Modal open={open} onClose={handleClose}>
               <Modal.Header>
                 <Modal.Title>Reset your password</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <div className="input-box" style={{ marginTop: "30px"}}>
+                <div className="input-box" style={{ marginTop: "30px" }}>
                   <input
                     type="text"
                     id="emaillogin"
@@ -43,59 +73,119 @@ const LoginForm = ({mode,signupp,signinn,onChange,onChange1,Passwordtoggle,reset
                 </Button>
               </Modal.Footer>
             </Modal>
-                        
-                        {/* </div> */}
-                       
-                    </div>
-                    <div className="form-group form-group--signup">
-                        <Input type="number" id="rollno" fname="rollno" label="Roll no" disabled={mode === 'login'} onChange2={onChange}/>
-                        <Input type="text" id="fullname" fname="fullname" label="Full name" disabled={mode === 'login'} onChange2={onChange}/>
-                        <Input type="email" id="email" fname="email" label="Email" disabled={mode === 'login'} onChange2={onChange} />
-                        <Input type="number"
-                                id="mobile"
-                                fname="mobile"
-                                label="Mobile no." disabled={mode === 'login'} onChange2={onChange}/>
-                        <Input type="text"
-                            id="organization"
-                            fname="organization"
-                            label="College Name" disabled={mode === 'login'} onChange2={onChange} />
-                        <Input 
-                          type="text"
-                          id="branch"
-                          fname="branch" label="Branch" disabled={mode === 'login'} onChange2={onChange} />
-                        <Input
-                         type="number"
-                         id="semester"
-                         fname="semester" label="Semester" disabled={mode === 'login'} onChange2={onChange} />
-                    
-                        <Input type={InputType1} id="password"      
-                            fname="password"
-                            label="Password" disabled={mode === 'login'} onChange2={onChange} />
-                            
-                        <Input type={InputType2}
-                         id="confirmpassword"
-                         fname="confirmpassword" label="Confirm Password" disabled={mode === 'login'} onChange2={onChange} 
-                         />
-                         <span className="password-toogle-icon">{CIcon}</span>
-                    </div>
-            </div>
-            {
-                mode === 'login'?
-                <>
-                  <a style={{textDecoration:'none',color:'whitesmoke'}} className="link" onClick={handleOpen}>
-                          Forgot your password?
-                        </a>
-                 <button className="button button--primary full-width" type="submit" onClick={signinn}>Log In</button>
-                </>
-            :
-            <button className="button button--primary full-width" type="submit" onClick={signupp}>Sign up</button>
-            }
-        </form>
-    </>
-  )
-}
 
-export default LoginForm
+            {/* </div> */}
+          </div>
+          <div className="form-group form-group--signup">
+            <Input
+              type="number"
+              id="rollno"
+              fname="rollno"
+              label="Roll no"
+              disabled={mode === "login"}
+              onChange2={onChange}
+            />
+            <Input
+              type="text"
+              id="fullname"
+              fname="fullname"
+              label="Full name"
+              disabled={mode === "login"}
+              onChange2={onChange}
+            />
+            <Input
+              type="email"
+              id="email"
+              fname="email"
+              label="Email"
+              disabled={mode === "login"}
+              onChange2={onChange}
+            />
+            <Input
+              type="number"
+              id="mobile"
+              fname="mobile"
+              label="Mobile no."
+              disabled={mode === "login"}
+              onChange2={onChange}
+            />
+            <Input
+              type="text"
+              id="organization"
+              fname="organization"
+              label="College Name"
+              disabled={mode === "login"}
+              onChange2={onChange}
+            />
+            <Input
+              type="text"
+              id="branch"
+              fname="branch"
+              label="Branch"
+              disabled={mode === "login"}
+              onChange2={onChange}
+            />
+            <Input
+              type="number"
+              id="semester"
+              fname="semester"
+              label="Semester"
+              disabled={mode === "login"}
+              onChange2={onChange}
+            />
+
+            <Input
+              type={InputType1}
+              id="password"
+              fname="password"
+              label="Password"
+              disabled={mode === "login"}
+              onChange2={onChange}
+            />
+
+            <Input
+              type={InputType2}
+              id="confirmpassword"
+              fname="confirmpassword"
+              label="Confirm Password"
+              disabled={mode === "login"}
+              onChange2={onChange}
+            />
+            <span className="password-toogle-icon">{CIcon}</span>
+          </div>
+        </div>
+        {mode === "login" ? (
+          <>
+            <a
+              style={{ textDecoration: "none", color: "whitesmoke" }}
+              className="link"
+              onClick={handleOpen}
+            >
+              Forgot your password?
+            </a>
+            <button
+              className="button button--primary full-width"
+              type="submit"
+              onClick={signinn}
+            >
+              Log In
+            </button>
+          </>
+        ) : (
+          <button
+            className="button button--primary full-width"
+            type="submit"
+            onClick={signupp}
+          >
+            Sign up
+          </button>
+        )}
+      </form>
+    </>
+  );
+};
+
+export default LoginForm;
 
 // class LoginForm extends React.Component {
 //     constructor(props) {
@@ -121,4 +211,3 @@ export default LoginForm
 //         )
 //     }
 // }
-

@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
-html, .bodylogin, .container, #app {
+html,
+.bodylogin,
+.container,
+#app {
   width: 100%;
   height: 100%;
 }
@@ -35,11 +38,11 @@ html, .bodylogin, .container, #app {
 }
 .form-block-wrapper--is-login {
   opacity: 0.92;
-  background-color: #2C497F;
+  background-color: #2c497f;
 }
 .form-block-wrapper--is-signup {
   opacity: 0.94;
-  background-color: #433B7C;
+  background-color: #433b7c;
 }
 
 .form-block {
@@ -130,32 +133,92 @@ html, .bodylogin, .container, #app {
 }
 
 .form-group__input:nth-of-type(1) {
-  -moz-transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.085s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
-  -webkit-transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.085s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
-  transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.085s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
+  -moz-transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.085s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
+  -webkit-transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.085s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
+  transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.085s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
 }
 
 .form-group__input:nth-of-type(2) {
-  -moz-transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.17s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
-  -webkit-transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.17s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
-  transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.17s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
+  -moz-transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.17s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
+  -webkit-transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.17s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
+  transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.17s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
 }
 
 .form-group__input:nth-of-type(3) {
-  -moz-transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.255s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
-  -webkit-transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.255s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
-  transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.255s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
+  -moz-transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.255s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
+  -webkit-transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.255s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
+  transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.255s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
 }
 
 .form-group__input:nth-of-type(4) {
-  -moz-transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
-  -webkit-transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
-  transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
+  -moz-transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
+  -webkit-transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
+  transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
 }
 .form-group__input:nth-of-type(5) {
-  -moz-transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
-  -webkit-transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
-  transition: transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s, opacity 0.3s ease-in-out 0.2s, background 0.15s ease-in-out, border 0.3s ease-in-out;
+  -moz-transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
+  -webkit-transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
+  transition:
+    transform 0.35s cubic-bezier(0.36, 1, 0.62, 0.98) 0.34s,
+    opacity 0.3s ease-in-out 0.2s,
+    background 0.15s ease-in-out,
+    border 0.3s ease-in-out;
 }
 
 .button {
@@ -182,9 +245,8 @@ html, .bodylogin, .container, #app {
   box-shadow: 0px 0px 13px 8px rgba(0, 0, 0, 0.1);
 }
 .button--primary {
-    
-    border-radius:3%;
-  background: #ED6A5E;
+  border-radius: 3%;
+  background: #ed6a5e;
   color: #fff;
 }
 .button:hover {
@@ -197,13 +259,11 @@ html, .bodylogin, .container, #app {
   width: 100%;
 }
 
-
-input[type=checkbox] {
-    margin-left: 1px;
+input[type="checkbox"] {
+  margin-left: 1px;
   display: none;
 }
-input[type=checkbox] + label:before {
-   
+input[type="checkbox"] + label:before {
   content: "";
   display: block;
   position: absolute;
@@ -218,7 +278,7 @@ input[type=checkbox] + label:before {
   -moz-border-radius: 50px;
   border-radius: 50px;
 }
-input[type=checkbox] + label:after {
+input[type="checkbox"] + label:after {
   content: "";
   display: block;
   position: absolute;
@@ -226,7 +286,7 @@ input[type=checkbox] + label:after {
   right: 18px;
   width: 25px;
   height: 25px;
-  background: #ED6A5E;
+  background: #ed6a5e;
   cursor: pointer;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -238,8 +298,7 @@ input[type=checkbox] + label:after {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-input[type=checkbox]:checked + label:after {
-    
+input[type="checkbox"]:checked + label:after {
   right: 0;
 }
 
