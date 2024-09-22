@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Profile.css";
-import { auth, db } from "./misc/firebase";
+import { db } from "./misc/firebase";
 import { useStore } from "../store";
-import {
-  ref,
-  get,
-} from "firebase/database";
+import { ref, get } from "firebase/database";
 
 const Profile = () => {
   const currentName = useStore((state) => state.currentName);
@@ -15,11 +12,7 @@ const Profile = () => {
   const [currorganization, setorganization] = useState("");
   const [currbranch, setbranch] = useState("");
   const [currsemester, setsemester] = useState("");
-
-  var user = auth.currentUser;
-  let count = 0;
-
-  if (count < 1) {
+  useEffect(() => {
     async function Displaydata() {
       get(ref(db, "users")).then((snapshot) => {
         try {
@@ -36,8 +29,6 @@ const Profile = () => {
           console.log(err.message);
         }
       });
-
-      // const user = auth.currentUser;
       console.log("hello");
       get(ref(db, "events")).then((snapshot) => {
         try {
@@ -95,7 +86,7 @@ const Profile = () => {
                   // let row4_content = [team.val().member4, team.val().mail_id4, team.val().roll_no4];
 
                   console.log(
-                    `email matched in team: ${team.key} and event ${event.key} `,
+                    `email matched in team: ${team.key} and event ${event.key} `
                   );
 
                   let container = document.getElementById("contain");
@@ -180,8 +171,7 @@ const Profile = () => {
     }
 
     Displaydata();
-  }
-  count++;
+  }, []);
 
   return (
     <div className="bodyprofile">
