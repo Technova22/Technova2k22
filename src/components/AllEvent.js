@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Input, InputGroup } from "rsuite";
 import SearchIcon from "@rsuite/icons/Search";
@@ -74,7 +74,7 @@ const Allevents = () => {
 
   function search() {
     // eslint-disable-next-line
-    if (searchInput.split(" ").join("") != "") {
+    if (searchInput.split(" ").join("") !== "") {
       setfilterfeatured([]);
     } else {
       if (!document.querySelector(".rs-input").placeholder)
@@ -899,8 +899,9 @@ const Allevents = () => {
               float: "right",
               marginRight: "5%",
             }}
+            rel="noreferrer"
           >
-            <i class="fab fa-linkedin"></i>
+            <i className="fab fa-linkedin"></i>
           </a>
           <div
             style={{
@@ -2137,7 +2138,7 @@ const Allevents = () => {
         <div>
           <div>
             <h2
-              class
+              className
               style={{
                 padding: "14px",
                 marginTop: "30px",
@@ -2439,7 +2440,7 @@ const Allevents = () => {
               {filtergdscDcrust.map((item) => {
                 return (
                   <div
-                    className={`col-md-4 col-sm-6 cont shadow ${item.id == "19" ? "d-none" : ""} `}
+                    className={`col-md-4 col-sm-6 cont shadow ${item.id === "19" ? "d-none" : ""} `}
                     style={{ borderRadius: "5px", padding: "10px" }}
                     key={item.id}
                   >

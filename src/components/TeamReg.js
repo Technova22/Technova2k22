@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useHistory, useParams, useRouteMatch } from "react-router-dom";
-import { auth, db } from "./misc/firebase";
+import { useHistory, useParams } from "react-router-dom";
+import { db } from "./misc/firebase";
 import "../TeamReg.css";
 
 import { data } from "../Data";
@@ -9,10 +9,7 @@ import {
   set,
   get,
   child,
-  update,
-  remove,
   push,
-  onValue,
 } from "firebase/database";
 
 import { useStore } from "../store";
@@ -177,7 +174,7 @@ const TeamReg = () => {
       const dbRef = ref(db, "events/" + data[ide].eventName + "/allMembers/");
 
       id_array.forEach((element) => {
-        if (element != "") {
+        if (element !== "") {
           let newRef = push(dbRef);
 
           set(newRef, element);
@@ -220,14 +217,14 @@ const TeamReg = () => {
     // alert("Please log in");
     // }
     if (
-      (teamform.email1 != "" &&
-        (teamform.email1 == teamform.email2 ||
-          teamform.email1 == teamform.email3 ||
-          teamform.email1 == teamform.email4)) ||
-      (teamform.email2 != "" &&
-        (teamform.email2 == teamform.email3 ||
-          teamform.email2 == teamform.email4)) ||
-      (teamform.email3 != "" && teamform.email3 == teamform.email4)
+      (teamform.email1 !== "" &&
+        (teamform.email1 === teamform.email2 ||
+          teamform.email1 === teamform.email3 ||
+          teamform.email1 === teamform.email4)) ||
+      (teamform.email2 !== "" &&
+        (teamform.email2 === teamform.email3 ||
+          teamform.email2 === teamform.email4)) ||
+      (teamform.email3 !== "" && teamform.email3 === teamform.email4)
     ) {
       console.log("Error : One or more emails entered are same");
       alert("one or more emails Entered are same");
@@ -254,16 +251,16 @@ const TeamReg = () => {
               // let childKey = childSnapshot.key;
               let childData = childSnapshot.val();
 
-              if (teamform.email1 != "" && childData == teamform.email1) {
+              if (teamform.email1 !== "" && childData === teamform.email1) {
                 throw Error(`${teamform.email1} is already registered`);
               }
-              if (teamform.email2 != "" && childData == teamform.email2) {
+              if (teamform.email2 !== "" && childData === teamform.email2) {
                 throw new Error(`${teamform.email2} is already registered`);
               }
-              if (teamform.email3 != "" && childData == teamform.email3) {
+              if (teamform.email3 !== "" && childData === teamform.email3) {
                 throw new Error(`${teamform.email3} is already registered`);
               }
-              if (teamform.email4 != "" && childData == teamform.email4) {
+              if (teamform.email4 !== "" && childData === teamform.email4) {
                 throw new Error(`${teamform.email4} is already registered`);
               }
             });
@@ -283,10 +280,10 @@ const TeamReg = () => {
         try {
           snapshot.forEach((childSnapshot) => {
             // console.log(childSnapshot.val());
-            if (childSnapshot.val().emailverified == true) {
+            if (childSnapshot.val().emailverified === true) {
               if (
-                teamform.email1 == childSnapshot.val().email &&
-                teamform.rollnumber1 == childSnapshot.val().rollno
+                teamform.email1 === childSnapshot.val().email &&
+                teamform.rollnumber1 === childSnapshot.val().rollno
               ) {
                 univ1 = childSnapshot.val().organization;
                 sem1 = childSnapshot.val().semester;
@@ -295,8 +292,8 @@ const TeamReg = () => {
                 console.log("email1 match" + i);
                 arr[0] = 1;
               } else if (
-                teamform.email2 == childSnapshot.val().email &&
-                teamform.rollnumber2 == childSnapshot.val().rollno
+                teamform.email2 === childSnapshot.val().email &&
+                teamform.rollnumber2 === childSnapshot.val().rollno
               ) {
                 univ2 = childSnapshot.val().organization;
                 sem2 = childSnapshot.val().semester;
@@ -305,8 +302,8 @@ const TeamReg = () => {
                 console.log("email2 match" + i);
                 arr[1] = 1;
               } else if (
-                teamform.email3 == childSnapshot.val().email &&
-                teamform.rollnumber3 == childSnapshot.val().rollno
+                teamform.email3 === childSnapshot.val().email &&
+                teamform.rollnumber3 === childSnapshot.val().rollno
               ) {
                 univ3 = childSnapshot.val().organization;
                 sem3 = childSnapshot.val().semester;
@@ -315,8 +312,8 @@ const TeamReg = () => {
                 console.log("email3 match" + i);
                 arr[2] = 1;
               } else if (
-                teamform.email4 == childSnapshot.val().email &&
-                teamform.rollnumber4 == childSnapshot.val().rollno
+                teamform.email4 === childSnapshot.val().email &&
+                teamform.rollnumber4 === childSnapshot.val().rollno
               ) {
                 univ4 = childSnapshot.val().organization;
                 sem4 = childSnapshot.val().semester;
@@ -333,23 +330,23 @@ const TeamReg = () => {
           //   console.log(`${arr[i]} `);
           // }
 
-          if (teamform.email2 == "") arr[1] = 1;
-          if (teamform.email3 == "") arr[2] = 1;
-          if (teamform.email4 == "") arr[3] = 1;
+          if (teamform.email2 === "") arr[1] = 1;
+          if (teamform.email3 === "") arr[2] = 1;
+          if (teamform.email4 === "") arr[3] = 1;
 
-          if (arr[0] == 0) {
+          if (arr[0] === 0) {
             throw new Error(
               `Either ${teamform.email1} is not registered or verified or its rollno is incorrect`,
             );
-          } else if (arr[1] == 0) {
+          } else if (arr[1] === 0) {
             throw new Error(
               `Either ${teamform.email2} is not registered or verified or its rollno is incorrect`,
             );
-          } else if (arr[2] == 0) {
+          } else if (arr[2] === 0) {
             throw new Error(
               `Either ${teamform.email3} is not registered or verified or its rollno is incorrect`,
             );
-          } else if (arr[3] == 0) {
+          } else if (arr[3] === 0) {
             throw new Error(
               `Either ${teamform.email4} is not registered or verified or its rollno is incorrect`,
             );
@@ -357,7 +354,7 @@ const TeamReg = () => {
 
           // for(let i = 0; i< 4; i++)
           // {
-          //   if(arr[i] == 0)
+          //   if(arr[i] === 0)
           //    {
           //      let k = i + 1
           //      vals = `email${k}`;
@@ -391,7 +388,7 @@ const TeamReg = () => {
     <>
       <button
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary"
         ref={refer}
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
@@ -400,26 +397,26 @@ const TeamReg = () => {
       </button>
 
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3 className="modal-title" id="exampleModalLabel">
                 NOTE !
               </h3>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <ul>
                 {/* <li></li> */}
                 <li>
@@ -444,10 +441,10 @@ const TeamReg = () => {
                 {/* <li></li> */}
               </ul>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
@@ -457,11 +454,11 @@ const TeamReg = () => {
           </div>
         </div>
       </div>
-      <div class={`${ide == "19" ? "d-none" : ""} rowteam`}>
+      <div className={`${ide === "19" ? "d-none" : ""} rowteam`}>
         <section
-          class={`sectionteam col-lg-6 col-12 ${ide == "19" ? "d-none" : ""} `}
+          className={`sectionteam col-lg-6 col-12 ${ide === "19" ? "d-none" : ""} `}
         >
-          <header class="headerteam ">
+          <header className="headerteam ">
             <h3 style={{ color: "black" }}>Register Your Team</h3>
             <br></br>
             <li
@@ -486,10 +483,10 @@ const TeamReg = () => {
               Members must have SignedUp on website.
             </li>
           </header>
-          <main class="mainteam">
+          <main className="mainteam">
             <form action="" id="TeamForm">
               <div
-                class="form-item box-itemteam"
+                className="form-item box-itemteam"
                 style={{ marginBottom: "30px" }}
               >
                 <input
@@ -497,23 +494,23 @@ const TeamReg = () => {
                   type="text"
                   name="teamname"
                   placeholder={
-                    data[ide].member == 1 ? "User Name" : "Team Name"
+                    data[ide].member === 1 ? "User Name" : "Team Name"
                   }
                   onChange={getData}
                   data-required
                 />
-                <small class="errorReq">
-                  <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                <small className="errorReq">
+                  <i className="fa fa-asterisk" aria-hidden="true"></i> required
                   field
                 </small>
               </div>
 
-              <div class="" id="1">
+              <div className="" id="1">
                 <span className="w-auto fs-5 text-dark fw-bold">
                   Member 1 (Leader Details)
                 </span>
                 <div className="row">
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="name1"
                       type="text"
@@ -522,16 +519,16 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
-                    <small class="errorEmail">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> email is
+                    <small className="errorEmail">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> email is
                       not valid
                     </small>
                   </div>
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="email1"
                       type="email"
@@ -541,18 +538,18 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
-                    <small class="errorEmail">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> email is
+                    <small className="errorEmail">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> email is
                       not valid
                     </small>
                   </div>
                 </div>
                 <div className="row">
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="phone1"
                       type="number"
@@ -561,12 +558,12 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
                   </div>
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="roll1"
                       type="number"
@@ -576,20 +573,20 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
                   </div>
                 </div>
               </div>
               <div
-                class={me2 ? " animate_animated animate_slideInDown" : "d-none"}
+                className={me2 ? " animate_animated animate_slideInDown" : "d-none"}
                 id="2"
               >
                 <span className="w-auto fs-5 text-dark fw-bold">Member 2</span>
                 <div className="row">
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="name2"
                       type="text"
@@ -598,13 +595,13 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
                     {/* <small class="errorEmail"><i class="fa fa-asterisk" aria-hidden="true"></i> email is not valid</small> */}
                   </div>
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="email2"
                       type="email"
@@ -614,18 +611,18 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
-                    <small class="errorEmail">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> email is
+                    <small className="errorEmail">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> email is
                       not valid
                     </small>
                   </div>
                 </div>
                 <div className="row">
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="phone2"
                       type="number"
@@ -634,12 +631,12 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
                   </div>
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="roll2"
                       type="number"
@@ -649,20 +646,20 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
                   </div>
                 </div>
               </div>
               <div
-                class={me3 ? " animate_animated animate_slideInDown" : "d-none"}
+                className={me3 ? " animate_animated animate_slideInDown" : "d-none"}
                 id="3"
               >
                 <span className="w-auto fs-5 text-dark fw-bold">Member 3</span>
                 <div className="row">
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="name3"
                       type="text"
@@ -671,16 +668,16 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
-                    <small class="errorEmail">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> email is
+                    <small className="errorEmail">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> email is
                       not valid
                     </small>
                   </div>
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="email3"
                       type="email"
@@ -690,14 +687,14 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
                   </div>
                 </div>
                 <div className="row">
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="phone3"
                       type="number"
@@ -706,16 +703,16 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
-                    <small class="errorEmail">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> email is
+                    <small className="errorEmail">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> email is
                       not valid
                     </small>
                   </div>
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="roll3"
                       type="number"
@@ -725,20 +722,20 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
                   </div>
                 </div>
               </div>
               <div
-                class={me4 ? " animate_animated animate_slideInDown" : "d-none"}
+                className={me4 ? " animate_animated animate_slideInDown" : "d-none"}
                 id="4"
               >
                 <span className="w-auto fs-5 text-dark fw-bold">Member 4</span>
                 <div className="row">
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="name4"
                       type="text"
@@ -747,16 +744,16 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
-                    <small class="errorEmail">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> email is
+                    <small className="errorEmail">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> email is
                       not valid
                     </small>
                   </div>
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="email4"
                       type="email"
@@ -766,14 +763,14 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
                   </div>
                 </div>
                 <div className="row">
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="phone4"
                       type="number"
@@ -782,16 +779,16 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
-                    <small class="errorEmail">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> email is
+                    <small className="errorEmail">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> email is
                       not valid
                     </small>
                   </div>
-                  <div class="form-item box-itemteam">
+                  <div className="form-item box-itemteam">
                     <input
                       id="roll4"
                       type="number"
@@ -801,8 +798,8 @@ const TeamReg = () => {
                       onChange={getData}
                       data-required
                     />
-                    <small class="errorReq">
-                      <i class="fa fa-asterisk" aria-hidden="true"></i> required
+                    <small className="errorReq">
+                      <i className="fa fa-asterisk" aria-hidden="true"></i> required
                       field
                     </small>
                   </div>
@@ -832,15 +829,15 @@ const TeamReg = () => {
                 </span>
               </div>
 
-              <div class="form-item my-3 mx-auto">
-                <button class="submitteam" id="sbtn" onClick={onSubmit}>
+              <div className="form-item my-3 mx-auto">
+                <button className="submitteam" id="sbtn" onClick={onSubmit}>
                   Submit
                 </button>
               </div>
             </form>
           </main>
 
-          <i class="waveteam"></i>
+          <i className="waveteam"></i>
         </section>
       </div>
     </>

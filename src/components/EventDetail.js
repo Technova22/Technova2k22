@@ -1,4 +1,3 @@
-import { timers } from "jquery";
 import React from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { data } from "../Data";
@@ -37,12 +36,12 @@ const EventDetail = () => {
   // console.log(ide)
   return (
     //  <div className='body45' >
-    <div class={`body45 innercontainer table-responsive`}>
-      <section class="about45">
-        <div class="banner45">
+    <div className={`body45 innercontainer table-responsive`}>
+      <section className="about45">
+        <div className="banner45">
           <img src={eventImage} alt="Event image"></img>
         </div>
-        <div class="description45" id="desc">
+        <div className="description45" id="desc">
           <h1 id="desgh">{eventName}</h1> <br />
           <br />
           <p>{eventDescription}</p>
@@ -56,7 +55,7 @@ const EventDetail = () => {
             <Link to={`/TeamReg/${ide}`}>
               {" "}
               <button
-                class="regis fourth"
+                className="regis fourth"
                 onClick={(e) => {
                   checker(e, ide);
                 }}
@@ -68,12 +67,12 @@ const EventDetail = () => {
         </div>
       </section>
       <br />
-      <div class="table-responsive" style={{ overflowX: "auto" }}>
-        <h1 class="heading45">EVENT RULES</h1>
+      <div className="table-responsive" style={{ overflowX: "auto" }}>
+        <h1 className="heading45">EVENT RULES</h1>
       </div>
 
       <div
-        class="rules45"
+        className="rules45"
         dangerouslySetInnerHTML={{ __html: rules }}
         style={{ listStyleType: "disc" }}
       ></div>

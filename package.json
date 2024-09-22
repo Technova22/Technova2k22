@@ -53,6 +53,11 @@
     "test": "test"
   },
   "devDependencies": {
+    "@eslint/js": "^9.11.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.36.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^15.9.0",
     "prettier": "^3.3.3"
   },
   "author": "",

@@ -4,8 +4,8 @@ import { AnimationOnScroll } from "react-animation-on-scroll";
 const About = () => {
   return (
     <>
-      <section class="about mt-md-5 mt-4" id="about">
-        <div class="col-12 col-md-5 p-4">
+      <section className="about mt-md-5 mt-4" id="about">
+        <div className="col-12 col-md-5 p-4">
           <AnimationOnScroll animateIn="animate__zoomIn">
             <img
               className="w-100 h-md-100 h-auto"
@@ -15,9 +15,9 @@ const About = () => {
           </AnimationOnScroll>
         </div>
 
-        <div class="col-12 col-md-7 p-4">
+        <div className="col-12 col-md-7 p-4">
           <AnimationOnScroll animateIn="animate__fadeIn">
-            <span class="heading">ABOUT US</span>
+            <span className="heading">ABOUT US</span>
             <br />
           </AnimationOnScroll>
           {/* <span class="tagline py-2"><b>Tagline</b></span> */}

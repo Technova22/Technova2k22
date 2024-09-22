@@ -169,7 +169,7 @@ const Allevents = () => {
 
   function search() {
     var searchSunshine = sunshine.filter((val) => {
-      if (searchInput.split(" ").join("") == "") {
+      if (searchInput.split(" ").join("") === "") {
         return val;
       } else if (
         val.society.toLowerCase().includes(searchInput.toLowerCase())
@@ -185,7 +185,7 @@ const Allevents = () => {
     console.log(filtersunshine);
 
     var searchLisoc = lisoc.filter((val) => {
-      if (searchInput.split(" ").join("") == "") {
+      if (searchInput.split(" ").join("") === "") {
         return val;
       } else if (
         val.society.toLowerCase().includes(searchInput.toLowerCase())
@@ -200,7 +200,7 @@ const Allevents = () => {
     setFilterlisoc(searchLisoc);
     console.log(filterlisoc);
     var searchPratibimb = pratibimb.filter((val) => {
-      if (searchInput.split(" ").join("") == "") {
+      if (searchInput.split(" ").join("") === "") {
         return val;
       } else if (
         val.society.toLowerCase().includes(searchInput.toLowerCase())

@@ -1,12 +1,10 @@
 import React, { useEffect, useRef } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useStore } from "../store";
 import { Dropdown } from "rsuite";
-import $ from "jquery";
 import "../Navbar.css";
 import "rsuite/dist/rsuite.min.css";
 import { useMediaQuery } from "react-responsive";
-import { useBootstrapPrefix } from "react-bootstrap/esm/ThemeProvider";
 
 const Navbar1 = () => {
   const currentName = useStore((state) => state.currentName);
@@ -29,7 +27,7 @@ const Navbar1 = () => {
   }
 
   useEffect(() => {
-    if (location.pathname == "/" || location.pathname == "/contact") {
+    if (location.pathname === "/" || location.pathname === "/contact") {
       refer.current.classList.remove("navbg");
       refer.current.classList.add("navbg1");
     } else {
@@ -86,8 +84,8 @@ const Navbar1 = () => {
     </button>
   </div>
 </nav> */}
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="p-4" style={{ background: "black" }}>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="p-4" style={{ background: "black" }}>
           <ul
             className="navbar-nav ms-auto  my-auto p-0"
             style={{ opacity: "0" }}
@@ -113,7 +111,7 @@ const Navbar1 = () => {
         ref={refer}
         style={{ zIndex: "99" }}
       >
-        <div class="containernew row ">
+        <div className="containernew row ">
           <h3
             className="logoweb me-auto col"
             style={{ fontSize: isMobile ? "22px" : isTab ? "20px" : "30px" }}
@@ -123,7 +121,7 @@ const Navbar1 = () => {
 
           {/* <button class="ms-auto navbar-toggler w-auto" align="right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> */}
           <button
-            class="ms-auto navbar-toggler w-auto"
+            className="ms-auto navbar-toggler w-auto"
             align="right"
             type="button"
             data-bs-toggle="collapse"
@@ -132,10 +130,13 @@ const Navbar1 = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar navbar-toggler-icon" ref={referburger}></span>
+            <span
+              className="navbar navbar-toggler-icon"
+              ref={referburger}
+            ></span>
           </button>
           <div
-            class="ms-auto collapse navbar-collapse w-auto"
+            className="ms-auto collapse navbar-collapse w-auto"
             id="navbarSupportedContent"
           >
             <ul className="navbar-nav ms-auto  my-auto p-0">
@@ -147,7 +148,7 @@ const Navbar1 = () => {
               <li className="nav-item">
                 <a
                   href="#about"
-                  className={location.hash == "#about" ? "active" : ""}
+                  className={location.hash === "#about" ? "active" : ""}
                 >
                   About
                 </a>
@@ -187,7 +188,7 @@ const Navbar1 = () => {
               {currentName === "" ? (
                 <li>
                   <Link to="/signup">
-                    <button class="btn8  text-light">Sign In</button>
+                    <button className="btn8  text-light">Sign In</button>
                   </Link>
                 </li>
               ) : (

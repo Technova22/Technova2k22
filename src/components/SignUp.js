@@ -1,22 +1,17 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../signup.css";
 import { useMediaQuery } from "react-responsive";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-  getDatabase,
   ref,
   set,
   get,
   child,
   update,
-  remove,
-  push,
-  onValue,
 } from "firebase/database";
 import Passwordtoggle from "./misc/Passwordtoggle";
 import {
-  getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
@@ -25,7 +20,7 @@ import {
 } from "firebase/auth";
 import { db, auth } from "./misc/firebase";
 import { useStore } from "../store";
-import { useToaster, Message, Modal, Button, Placeholder } from "rsuite";
+import { useToaster, Message, Modal, Button } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import Login from "./Login";
 
@@ -100,7 +95,7 @@ const SignUp = () => {
   const { e_mail, e_password } = logincred;
 
   function validate_confirm(password, confirmpassword) {
-    if (password == confirmpassword) {
+    if (password === confirmpassword) {
       console.log("hello");
       return true;
     } else {
@@ -133,7 +128,7 @@ const SignUp = () => {
   function validate_email(email) {
     let expression = /^[^@]+@\w+(\.\w+)+\w$/;
 
-    if (expression.test(email) == true) {
+    if (expression.test(email) === true) {
       // Email is good
       return true;
     } else {
@@ -147,7 +142,7 @@ const SignUp = () => {
 
   function validate_field(field) {
     console.log(field.length);
-    if (field.length == 0) {
+    if (field.length === 0) {
       return false;
     }
   }
@@ -216,7 +211,7 @@ const SignUp = () => {
         alert(error_message);
       });
     // Validate input fields
-    // if( validate_rollno(rollno)== true ){
+    // if( validate_rollno(rollno)=== true ){
     //   alert("hello")
     // }else{
   }
@@ -256,26 +251,26 @@ const SignUp = () => {
     // let flag=false
     // await validate_rollno(rollno).then(flag=true).catch(flag=false)
     try {
-      if (validate_confirm(password, confirmpassword) == false) {
+      if (validate_confirm(password, confirmpassword) === false) {
         throw new Error(`password not same`);
       }
-      if (containsOnlyNumbers(rollno) == false) {
+      if (containsOnlyNumbers(rollno) === false) {
         throw new Error("Roll no should contain numeric values");
       }
-      if (containsOnlyNumbers(mobile) == false) {
+      if (containsOnlyNumbers(mobile) === false) {
         throw new Error("Mobile No. should contain numeric values");
       }
-      if (validate_password(password) == false) {
+      if (validate_password(password) === false) {
         // console.log(password);
         throw new Error(`termiate`);
         // console.log("hello2")
         // alert('One or More Extra Fields is Outta Line!!');
       }
       if (
-        validate_field(fullname) == false ||
-        validate_field(branch) == false ||
-        validate_field(semester) == false ||
-        validate_field(organization) == false
+        validate_field(fullname) === false ||
+        validate_field(branch) === false ||
+        validate_field(semester) === false ||
+        validate_field(organization) === false
       ) {
         console.log(validate_field(semester));
         throw new Error("Any of field is Empty");
@@ -313,7 +308,7 @@ const SignUp = () => {
         // console.log(user.email);
         // Add this user to Firebase Database
         // var database_ref = db.ref()
-        if (user.emailVerified != true) {
+        if (user.emailVerified !== true) {
           toaster.push(
             <Message type="error" closable>
               Email not verified yet

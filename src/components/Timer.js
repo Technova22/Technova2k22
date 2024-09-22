@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { count } from "rsuite/esm/utils/ReactChildren";
 import "../timer.css";
 
 const Timer = () => {
@@ -25,7 +24,7 @@ const Timer = () => {
             seconds: "Seconds",
           },
         },
-        config,
+        config
       );
 
       _this.current = {
@@ -221,7 +220,11 @@ const Timer = () => {
         <h3 style={{ color: "#fff", textAlign: "center" }}>
           REGISTRATION ENDS IN --
         </h3>
-        <div class="flipclock" id="flipclock-1" style={{ color: "#000" }}></div>
+        <div
+          className="flipclock"
+          id="flipclock-1"
+          style={{ color: "#000" }}
+        ></div>
       </section>
     </>
   );

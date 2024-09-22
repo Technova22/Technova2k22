@@ -21,7 +21,7 @@ const Login = ({
 
   return (
     <>
-      <div class="bodylogin">
+      <div className="bodylogin">
         <div
           className={`form-block-wrapper form-block-wrapper--is-${mode}`}
         ></div>

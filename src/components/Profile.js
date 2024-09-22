@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../Profile.css";
 import { auth, db } from "./misc/firebase";
 import { useStore } from "../store";
 import {
   ref,
-  set,
   get,
-  child,
-  update,
-  remove,
-  push,
-  onValue,
 } from "firebase/database";
 
 const Profile = () => {
@@ -30,7 +24,7 @@ const Profile = () => {
       get(ref(db, "users")).then((snapshot) => {
         try {
           snapshot.forEach((snap) => {
-            if (snap.key == currentRoll) {
+            if (snap.key === currentRoll) {
               setphone(snap.val().mobile);
               setorganization(snap.val().organization);
               setbranch(snap.val().branch);
@@ -51,14 +45,14 @@ const Profile = () => {
             console.log(`${event.key} checked`);
 
             event.forEach((team) => {
-              if (team.key != "allMembers") {
+              if (team.key !== "allMembers") {
                 console.log(`entered team: ${team.key}`);
 
                 if (
-                  currentEmail == team.val().mail_id1 ||
-                  currentEmail == team.val().mail_id2 ||
-                  currentEmail == team.val().mail_id3 ||
-                  currentEmail == team.val().mail_id4
+                  currentEmail === team.val().mail_id1 ||
+                  currentEmail === team.val().mail_id2 ||
+                  currentEmail === team.val().mail_id3 ||
+                  currentEmail === team.val().mail_id4
                 ) {
                   let arr = [
                     team.val().mail_id1,
@@ -149,7 +143,7 @@ const Profile = () => {
 
                   tb.appendChild(rhead);
                   for (let i = 0; i < 4; i++) {
-                    if (arr[i] != "") {
+                    if (arr[i] !== "") {
                       var row = document.createElement("tr");
 
                       for (let j = 0; j < 4; j++) {
@@ -191,8 +185,8 @@ const Profile = () => {
 
   return (
     <div className="bodyprofile">
-      <div class="navbar-top">
-        <div class="title">
+      <div className="navbar-top">
+        <div className="title">
           <h1>Profile</h1>
         </div>
       </div>
@@ -225,12 +219,12 @@ const Profile = () => {
 
       {/* <!-- Main --> */}
       <div
-        class="mainprofile col-md-7 col-12 col-md-10 mx-auto my-5"
+        className="mainprofile col-md-7 col-12 col-md-10 mx-auto my-5"
         id="contain"
       >
         <h2>{currentName.toUpperCase()}</h2>
-        <div class="cardprofile py-4">
-          <div class="card-bodyprofile">
+        <div className="cardprofile py-4">
+          <div className="card-bodyprofile">
             <table className="table table-striped table-borderless m-auto text-break w-auto">
               <tbody>
                 <tr>
