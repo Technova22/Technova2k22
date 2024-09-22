@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Input, InputGroup } from "rsuite";
 import SearchIcon from "@rsuite/icons/Search";
@@ -558,6 +558,9 @@ const Allevents = () => {
     });
     setFilterarchDept(searcharchDept);
   }
+  useEffect(() => {
+    search();
+  }, [searchInput]);
   const isMobile = useMediaQuery({
     query: "(max-width: 400px)",
   });
